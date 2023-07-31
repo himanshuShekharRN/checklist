@@ -8,10 +8,13 @@ import {
   MyCheckList,
   FloatingAddButton,
 } from '../../component';
+import {useNavigation} from '@react-navigation/native';
 
 export const Checklist = () => {
+  const navigation = useNavigation();
+
   const onPressAddHandler = (): void => {
-    console.log('Add');
+    navigation.navigate('AddList');
   };
 
   return (

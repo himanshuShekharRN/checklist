@@ -1,7 +1,8 @@
 import React, {useCallback} from 'react';
+import {Card} from '../cards';
+import {Title} from '../title';
 import {Text} from 'react-native';
-
-import {Card, Title, Space} from '../';
+import {Space} from '../space';
 
 export const PreDepartureList: React.FC = () => {
   const onPressHandler = useCallback(() => console.log('Hi'), []);

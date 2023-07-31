@@ -1,6 +1,12 @@
 import React from 'react';
-import {Checklist} from './screen/checklist';
+import 'react-native-gesture-handler';
 
-export const App = (): React.JSX.Element => {
-  return <Checklist />;
+import {Navigation} from './navigation';
+
+export const App: React.FC = () => {
+  return (
+    <>
+      <Navigation />
+    </>
+  );
 };
