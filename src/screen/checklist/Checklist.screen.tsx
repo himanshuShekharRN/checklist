@@ -2,8 +2,9 @@ import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
 import {styles} from './Checklist.style';
-import {PreDepartureList} from '../../component/preDepartureList/PreDepartureList';
+import {PreDepartureList} from '../../component/preDepartureList';
 import {Space} from '../../component/space';
+import {MyCheckList} from '../../component/myChecklist';
 
 export const Checklist = () => {
   return (
@@ -13,7 +14,7 @@ export const Checklist = () => {
         <Space height={38} />
         <PreDepartureList />
         <Space height={24} />
-        <PreDepartureList />
+        <MyCheckList />
       </View>
     </SafeAreaView>
   );
