@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     alignSelf: 'center',
     width: '100%',
-    marginTop: 12,
     borderRadius: 7,
   },
 });

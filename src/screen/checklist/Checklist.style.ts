@@ -9,4 +9,7 @@ export const styles = StyleSheet.create({
   subContainer: {
     paddingHorizontal: 16,
   },
+  contentContainerStyle: {
+    paddingBottom: 50,
+  },
 });
