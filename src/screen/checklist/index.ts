@@ -1,3 +1,3 @@
-import {Checklist} from './Checklist.screens';
+import {Checklist} from './Checklist.screen';
 
 export {Checklist};
