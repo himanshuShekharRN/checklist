@@ -1,15 +1,17 @@
 import React from 'react';
-import {Pressable} from 'react-native';
+import {Pressable, View} from 'react-native';
 
 import {CardProps} from './Card.type';
 import {styles} from './Card.style';
 
 export const Card: React.FC<CardProps> = props => {
-  const {children, onPressHandler} = props;
+  const {children, onPressHandler, isPressable, cardStyle} = props;
+
+  const ViewWrapper = isPressable ? Pressable : View;
 
   return (
-    <Pressable onPress={onPressHandler} style={styles.container}>
+    <ViewWrapper onPress={onPressHandler} style={[styles.container, cardStyle]}>
       {children}
-    </Pressable>
+    </ViewWrapper>
   );
 };

@@ -24,7 +24,7 @@ export const MyCheckList: React.FC = () => {
         subTitle="Create your own personal checklist"
       />
       <Space height={12} />
-      <Card onPressHandler={onPressHandler}>
+      <Card isPressable onPressHandler={onPressHandler}>
         <Text>Coming soon</Text>
       </Card>
     </>

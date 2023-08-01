@@ -14,7 +14,7 @@ export const PreDepartureList: React.FC = () => {
         subTitle="List of all required documents for your upcoming assignment"
       />
       <Space height={12} />
-      <Card onPressHandler={onPressHandler}>
+      <Card isPressable onPressHandler={onPressHandler}>
         <Text>Coming soon</Text>
       </Card>
     </>

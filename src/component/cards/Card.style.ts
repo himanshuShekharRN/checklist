@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     borderRadius: 7,
+    opacity: 1,
   },
 });

@@ -3,7 +3,7 @@ import React from 'react';
 
 import {AddList, Checklist, Home, ViewList} from '../screen';
 import {CheckListStackParamList} from './type';
-import {COLOR_NAVY_800} from '../utils/colors';
+import {COLOR_NAVY_800_OPACITY} from '../utils/colors';
 
 const Stack = createStackNavigator<CheckListStackParamList>();
 
@@ -18,8 +18,7 @@ export const CheckListStackNavigator = () => {
         options={{
           presentation: 'transparentModal',
           cardStyle: {
-            backgroundColor: COLOR_NAVY_800,
-            opacity: 0.9,
+            backgroundColor: COLOR_NAVY_800_OPACITY,
             flex: 1,
           },
           headerShown: false,
