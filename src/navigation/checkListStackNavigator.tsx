@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
-import {AddList, Checklist, Home, ViewList} from '../screen';
+import {AddList, Checklist, Home, ViewList, EditList} from '../screen';
 import {CheckListStackParamList} from './type';
 import {COLOR_NAVY_800_OPACITY} from '../utils/colors';
 
@@ -9,7 +9,10 @@ const Stack = createStackNavigator<CheckListStackParamList>();
 
 export const CheckListStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="CheckList" component={Checklist} />
       <Stack.Screen
@@ -21,10 +24,10 @@ export const CheckListStackNavigator = () => {
             backgroundColor: COLOR_NAVY_800_OPACITY,
             flex: 1,
           },
-          headerShown: false,
         }}
       />
       <Stack.Screen name="ViewList" component={ViewList} />
+      <Stack.Screen name="EditList" component={EditList} />
     </Stack.Navigator>
   );
 };

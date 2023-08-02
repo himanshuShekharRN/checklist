@@ -6,13 +6,15 @@ import {FONT_14} from '../../../utils/fontSize';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: COLOR_TEAL,
-    paddingHorizontal: 28,
-    paddingVertical: 10,
-    borderRadius: 20,
+    borderRadius: 30,
+    width: '33%',
+    height: 45,
+    justifyContent: 'center',
   },
   buttonText: {
     color: COLOR_WHITE,
     fontFamily: ROBOTO_BOLD,
     fontSize: FONT_14,
+    textAlign: 'center',
   },
 });

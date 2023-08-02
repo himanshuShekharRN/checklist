@@ -1,8 +1,8 @@
-import {ViewStyle} from 'react-native';
+import {TextStyle, ViewStyle} from 'react-native';
 
 export interface RoundedButtonProps {
   buttonStyle?: ViewStyle;
-  buttonTitleStyle?: ViewStyle;
+  buttonTitleStyle?: TextStyle;
   title: string;
   onPress: () => void;
 }

@@ -10,12 +10,16 @@ import {
 import {styles} from './AddList.style';
 import {COLOR_GREY_600, COLOR_GREY_700} from '../../utils/colors';
 import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {useDispatch} from 'react-redux';
+import {addCheckListToServer} from '../../store/reducer/checklist';
 
 export const AddList = () => {
   const [listTitle, setListTitle] = useState('');
   const [showCrossIcon, setShowCrossIcon] = useState(false);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<{EditList: {}}>>();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (listTitle?.length === 0) {
@@ -38,8 +42,19 @@ export const AddList = () => {
   };
 
   const onPressDoneHandler = () => {
-    console.log('DOne');
     Keyboard.dismiss();
+    const checkListData = {
+      id: Date.now(),
+      dateCreated: Date.now(),
+      checkListTitle: listTitle,
+      checkListsData: [],
+      lastItemAddedInList: [],
+    };
+    dispatch(addCheckListToServer(checkListData));
+    navigation.replace('EditList', {
+      listId: checkListData.id,
+      listTitle: listTitle,
+    });
   };
 
   return (

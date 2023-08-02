@@ -3,13 +3,15 @@ export type CheckListStackParamList = {
   CheckList: undefined;
   AddList: undefined;
   ReviewList: {
-    reviewListId: string;
+    reviewListId: number;
   };
   ViewList: {
-    listId: string;
+    listId: number;
+    listTitle: string;
   };
   EditList: {
-    listId: string;
+    listId: number;
+    listTitle: string;
   };
   Completed: undefined;
 };

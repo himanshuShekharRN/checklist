@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  svgContainer: {
+  iconContainer: {
     backgroundColor: COLOR_WHITE,
     borderRadius: 20,
     width: 40,

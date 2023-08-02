@@ -7,6 +7,7 @@ import {HeadersWithButton} from './headers';
 import {CustomSVG} from './customSVG';
 import {CustomIcon} from './customIcon';
 import {FloatingAddButton, RoundedButton} from './buttons';
+import {ListCard} from './listCard';
 
 export {
   FloatingAddButton,
@@ -19,4 +20,5 @@ export {
   CustomSVG,
   CustomIcon,
   RoundedButton,
+  ListCard,
 };
