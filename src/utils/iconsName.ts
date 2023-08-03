@@ -1,0 +1,9 @@
+export const OUTLINE_EXCLAMATION = 'error-outline';
+export const WORKSPACE_PREMIUM = 'workspace-premium';
+export const FILE_FILLED = 'description';
+export const DONE = 'check-circle';
+export const SKIPPED_OPTIONAL = 'do-disturb-on';
+export const PENDING = 'info';
+export const UNCHECK = 'panorama-fish-eye';
+export const DELETE = 'delete';
+export const RIGHT_ANGLE_BRACKET = 'keyboard-arrow-right';

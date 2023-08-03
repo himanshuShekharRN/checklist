@@ -4,7 +4,7 @@ export interface IconProps {
   size: number;
   name: string;
   color?: string;
-  isPressable: boolean;
+  isPressable?: boolean;
   iconWrapperStyle?: ViewStyle;
   onPressHandler?: () => void;
 }

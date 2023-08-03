@@ -1,7 +1,14 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
-import {AddList, Checklist, Home, ViewList, EditList} from '../screen';
+import {
+  AddList,
+  Checklist,
+  Home,
+  ViewList,
+  EditList,
+  ReviewList,
+} from '../screen';
 import {CheckListStackParamList} from './type';
 import {COLOR_NAVY_800_OPACITY} from '../utils/colors';
 
@@ -28,6 +35,7 @@ export const CheckListStackNavigator = () => {
       />
       <Stack.Screen name="ViewList" component={ViewList} />
       <Stack.Screen name="EditList" component={EditList} />
+      <Stack.Screen name="ReviewList" component={ReviewList} />
     </Stack.Navigator>
   );
 };

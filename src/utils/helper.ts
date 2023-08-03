@@ -16,3 +16,9 @@ export const formatDate = (timestamp: number): string => {
 
   return `${day}.${month}.${year}`;
 };
+
+export const isEmptyObject = obj => {
+  return Object.keys(obj).length === 0;
+};
+
+export const isNonEmptyObject = obj => !isEmptyObject(obj);
