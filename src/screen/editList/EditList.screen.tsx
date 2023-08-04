@@ -1,6 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Pressable, SafeAreaView, Text, View} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   HeadersWithButton,
   ListCard,
@@ -8,22 +7,23 @@ import {
   Space,
 } from '../../component';
 import {styles} from './EditList.style';
-import {CheckListItem} from './EditList.type';
+import {CheckListItem, EditListRouteProp, RouteParams} from './EditList.type';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {addTasks} from '../../store/reducer/checklist';
+import {RootState} from '../../store';
 
 export const EditList = () => {
   const navigation = useNavigation<StackNavigationProp<{ViewList: {}}>>();
-  const route = useRoute();
+
   const dispatch = useDispatch();
   const {individualChecklistData} = useSelector(
-    state => state.checkListReducer,
+    (state: RootState) => state.checkListReducer,
   );
 
-  const {listId, listTitle} = route?.params;
-
+  const route = useRoute<EditListRouteProp>();
+  const {listId, listTitle}: RouteParams = route.params;
   const [listData, setListData] = useState<CheckListItem[]>([]);
   const [currentList, setCurrentList] = useState('');
   const [isAddingList, setIsAddingList] = useState(false);
@@ -83,7 +83,7 @@ export const EditList = () => {
     }
   }, [currentList, setIsAddingList]);
 
-  const renderListCards = ({item}) => {
+  const renderListCards = ({item}: {item: CheckListItem}) => {
     return (
       <ListCard
         iconName="description"

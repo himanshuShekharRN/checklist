@@ -1,7 +1,8 @@
-import React from 'react';
-import {View, Text, FlatList, Alert} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {View, Text, FlatList, Alert, Modal, Animated} from 'react-native';
 
 import {
+  CustomIcon,
   DepartureDocCard,
   Space,
   SwipableActionButton,
@@ -11,9 +12,15 @@ import {
   COLOR_GREEN_600,
   COLOR_GREY_600,
   COLOR_NAVY_800,
+  COLOR_WHITE,
 } from '../../utils/colors';
 import {styles} from './NationalChecklist.style';
-import {DONE, SKIPPED_OPTIONAL, UNCHECK} from '../../utils/iconsName';
+import {
+  CHECK_DONE,
+  DONE,
+  SKIPPED_OPTIONAL,
+  UNCHECK,
+} from '../../utils/iconsName';
 import {
   useChecklistCompletionStatus,
   usePreDepartureListData,
@@ -23,7 +30,7 @@ import {
   checklistSubmitted,
   checklistUnchecked,
 } from '../../store/reducer/departureChecklist';
-import {ALERT_MSG, SKIPPED, UNCHECKED} from '../../utils/constant';
+import {ALERT_MSG, SKIPPED} from '../../utils/constant';
 
 export const NationalChecklist: React.FC = () => {
   const [completedChecklist] = useChecklistCompletionStatus();
@@ -31,10 +38,43 @@ export const NationalChecklist: React.FC = () => {
     usePreDepartureListData();
 
   const dispatch = useDispatch();
+  const rotationValue = useRef(new Animated.Value(0)).current;
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const resetRotation = () => {
+    Animated.timing(rotationValue, {
+      toValue: 0,
+      duration: 0,
+      useNativeDriver: true,
+    }).start(({finished}) => {
+      if (finished) {
+        setModalVisible(false);
+      }
+    });
+  };
+
+  const startRotationAnimation = () => {
+    Animated.timing(rotationValue, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(({finished}) => {
+      if (finished) {
+        setModalVisible(false);
+        resetRotation();
+      }
+    });
+  };
+
+  const rotate = rotationValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['280deg', '360deg'],
+  });
 
   const handleOnSubmit = items => {
     const submitTheChecklist = () => {
-      dispatch(checklistSubmitted(items));
+      setModalVisible(true);
+      dispatch(checklistSubmitted({items}));
     };
 
     Alert.alert(null, ALERT_MSG, [
@@ -45,6 +85,13 @@ export const NationalChecklist: React.FC = () => {
       {text: 'Yes', onPress: submitTheChecklist},
     ]);
   };
+
+  useEffect(() => {
+    if (modalVisible) {
+      startRotationAnimation();
+    }
+  }, [modalVisible]);
+
   const handleOnSkip = items =>
     dispatch(checklistSubmitted({items, key: SKIPPED}));
   const handleOnDone = items =>
@@ -163,14 +210,23 @@ export const NationalChecklist: React.FC = () => {
   };
 
   return (
-    <FlatList
-      data={inCompletePreDepartureList}
-      bounces={false}
-      showsVerticalScrollIndicator={false}
-      ListHeaderComponent={getHeaderComponent()}
-      renderItem={renderItem}
-      ListFooterComponent={getFooterComponent()}
-      contentContainerStyle={styles.containerStyle}
-    />
+    <>
+      <FlatList
+        data={inCompletePreDepartureList}
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={getHeaderComponent()}
+        renderItem={renderItem}
+        ListFooterComponent={getFooterComponent()}
+        contentContainerStyle={styles.containerStyle}
+      />
+      <Modal animationType="fade" transparent={false} visible={modalVisible}>
+        <View style={styles.modalContainer}>
+          <Animated.View style={{transform: [{rotate}]}}>
+            <CustomIcon name={CHECK_DONE} size={70} color={COLOR_WHITE} />
+          </Animated.View>
+        </View>
+      </Modal>
+    </>
   );
 };

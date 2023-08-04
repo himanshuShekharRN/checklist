@@ -12,48 +12,21 @@ import {
 } from '../../component';
 import {styles} from './ReviewList.style';
 import {COLOR_WHITE} from '../../utils/colors';
-import {FirstRoute} from '../../component/customTab/FirstRoute';
-import {SecondRoute} from '../../component/customTab/SecondRoute';
-import {ThirdRoute} from '../../component/customTab/ThirdRoute';
-import {FourthRoute} from '../../component/customTab/FourthRoute';
-import {FifthRoute} from '../../component/customTab/FifthRoute';
 import {useChecklistCompletionStatus} from '../../hooks';
+import {
+  FifthRoute,
+  FirstRoute,
+  FourthRoute,
+  SecondRoute,
+  ThirdRoute,
+} from '../../component/customTab';
+import {getRoutes} from '../../utils/helper';
 
 export const ReviewList: React.FC = () => {
   const navigation = useNavigation();
   const [progressStatus] = useChecklistCompletionStatus();
   const goBack = () => {
     navigation.goBack();
-  };
-
-  const getRoutes = () => {
-    return [
-      {
-        key: 'first',
-        title: 'STCW National',
-        requireAttention: true,
-      },
-      {
-        key: 'second',
-        title: 'Flag State',
-        requireAttention: true,
-      },
-      {
-        key: 'third',
-        title: 'GDPR Documents',
-        requireAttention: false,
-      },
-      {
-        key: 'fourth',
-        title: 'Training',
-        requireAttention: false,
-      },
-      {
-        key: 'fifth',
-        title: 'Technical',
-        requireAttention: false,
-      },
-    ];
   };
 
   const getFirstRoute = () => {

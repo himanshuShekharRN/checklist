@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {FlatList, SafeAreaView, ScrollView, Text, View} from 'react-native';
 
 import {styles} from './Checklist.style';
 import {

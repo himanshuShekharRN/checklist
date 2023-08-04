@@ -1,7 +1,8 @@
 import {UNCHECKED} from './../../../utils/constant';
 import {createSlice} from '@reduxjs/toolkit';
+import {ChecklistReducer} from './type';
 
-const initialState = {
+const initialState: ChecklistReducer = {
   isSendingDataToBE: false,
   isAddCheckListSuccess: false,
   isAddCheckListFailure: false,

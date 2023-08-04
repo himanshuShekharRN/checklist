@@ -9,8 +9,9 @@ import {
   PENDING,
   SKIPPED_OPTIONAL,
 } from '../../utils/iconsName';
+import {DepartureDocCardProps} from './DepartureDocCard.type';
 
-export const DepartureDocCard: React.FC = props => {
+export const DepartureDocCard: React.FC<DepartureDocCardProps> = props => {
   const {listData, disabledTextColor} = props;
   const {
     documentName,
@@ -27,7 +28,7 @@ export const DepartureDocCard: React.FC = props => {
   const isOptional = documentType === 'optional';
   const isPending = status === 'pending';
 
-  const getNameOfIcon = isCompleted => {
+  const getNameOfIcon = (isCompleted: boolean): string => {
     let iconName = FILE_FILLED;
     if (isCompleted) {
       iconName = DONE;

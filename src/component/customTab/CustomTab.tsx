@@ -4,15 +4,16 @@ import {TabBar, TabBarIndicator, TabView} from 'react-native-tab-view';
 
 import {CustomIcon} from '../';
 import {COLOR_MARLOW_BLUE, COLOR_NAVY_500, COLOR_RED} from '../../utils/colors';
-import {FirstRoute} from './FirstRoute';
-import {SecondRoute} from './SecondRoute';
-import {ThirdRoute} from './ThirdRoute';
-import {FourthRoute} from './FourthRoute';
-import {FifthRoute} from './FifthRoute';
-import {styles} from './CustomTab.type';
+import {FirstRoute} from './firstRoute';
+import {SecondRoute} from './secondRoute';
+import {styles} from './CustomTab.style';
 import {OUTLINE_EXCLAMATION} from '../../utils/iconsName';
+import {CustomTabProps, Routes} from './CustomTab.type';
+import {ThirdRoute} from './thirdRoute';
+import {FourthRoute} from './fourthRoute';
+import {FifthRoute} from './fifthRoute';
 
-export const CustomTab: React.FC = props => {
+export const CustomTab: React.FC<CustomTabProps> = props => {
   const {
     routes = [],
     firstRoute,
@@ -26,7 +27,7 @@ export const CustomTab: React.FC = props => {
 
   const [index, setIndex] = useState(0);
 
-  const renderScene = ({route}) => {
+  const renderScene = ({route}: {route: Routes}) => {
     switch (route.key) {
       case 'first':
         return <FirstRoute children1={firstRoute} />;
@@ -37,7 +38,7 @@ export const CustomTab: React.FC = props => {
       case 'fourth':
         return <FourthRoute children4={fourthRoute} />;
       case 'fifth':
-        return <FifthRoute children4={fifthRoute} />;
+        return <FifthRoute children5={fifthRoute} />;
       default:
         return null;
     }

@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {COLOR_BLACK, COLOR_GRAY_500, COLOR_NAVY_300} from '../../utils/colors';
+import {
+  COLOR_BLACK,
+  COLOR_GRAY_500,
+  COLOR_NAVY_300,
+  COLOR_NAVY_800_OPACITY,
+} from '../../utils/colors';
 import {FONT_12, FONT_14} from '../../utils/fontSize';
 import {ROBOTO_BOLD, ROBOTO_REGULAR_ITALIC} from '../../utils/fonts';
 
@@ -32,5 +37,11 @@ export const styles = StyleSheet.create({
     color: COLOR_BLACK,
     fontFamily: ROBOTO_BOLD,
     fontSize: FONT_14,
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLOR_NAVY_800_OPACITY,
   },
 });

@@ -7,8 +7,9 @@ import {
   SUBMITTED,
 } from '../../../utils/constant';
 import {DATA} from '../../../utils/mockData';
+import {DepartureCheckListReducer} from './type';
 
-const initialState = {
+const initialState: DepartureCheckListReducer = {
   isFetching: false,
   isFetchingSuccess: false,
   isFetchingFailed: false,

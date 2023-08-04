@@ -22,25 +22,30 @@ import {DELETE, DONE, FILE_FILLED, UNCHECK} from '../../utils/iconsName';
 import {COLOR_GREEN_600, COLOR_RED_500} from '../../utils/colors';
 import {usePersonalChecklistData} from '../../hooks/usePersonalChecklistData';
 import {UNCHECKED} from '../../utils/constant';
+import {ButtonHandlerType, ViewListRouteProps} from './ViewList.type';
+import {RootState} from '../../store';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {IndividualCheckListDataType} from '../../store/reducer/checklist/type';
 
 export const ViewList = () => {
-  const navigation = useNavigation();
-  const route = useRoute();
+  const navigation = useNavigation<StackNavigationProp<{EditList: {}}>>();
+  const route = useRoute<ViewListRouteProps>();
   const dispatch = useDispatch();
   const isScreenInFocus = useIsFocused();
+
   const [personalCompletedChecklist, personalIncompleteChecklist] =
     usePersonalChecklistData();
-  const {listId, listTitle} = route?.params;
+  const {listId, listTitle} = route.params;
 
   const {individualChecklistData} = useSelector(
-    state => state.checkListReducer,
+    (state: RootState) => state.checkListReducer,
   );
 
   const [currentList, setCurrentList] = useState('');
 
   const goBack = () => navigation.goBack();
 
-  const onPressCancelHandler = () => {
+  const onPressCancelHandler = (): void => {
     goBack();
     dispatch(resetTask());
   };
@@ -49,12 +54,13 @@ export const ViewList = () => {
     setCurrentList(text);
   };
 
-  const handleOnPress = () => {
+  const handleOnPress = (): void => {
     navigation.replace('EditList', {
       listId: listId,
       listTitle: listTitle,
     });
   };
+
   useEffect(() => {
     if (isScreenInFocus && listId) {
       const getTaskReducerData = {
@@ -64,13 +70,14 @@ export const ViewList = () => {
     }
   }, [isScreenInFocus, listId, dispatch]);
 
-  const handleOnUncheck = items =>
+  const handleOnUncheck = (items: IndividualCheckListDataType) =>
     dispatch(updateTaskStatus({items, listId, key: UNCHECKED}));
-  const handleOnDelete = items =>
+  const handleOnDelete = (items: IndividualCheckListDataType) =>
     dispatch(deleteIndividualChecklist({items, listId}));
-  const handleOnDone = items => dispatch(updateTaskStatus({items, listId}));
+  const handleOnDone = (items: IndividualCheckListDataType) =>
+    dispatch(updateTaskStatus({items, listId}));
 
-  const getDetailsBasedOn = _isCompleted => {
+  const getDetailsBasedOn = (_isCompleted: boolean): ButtonHandlerType[] => {
     if (_isCompleted) {
       return [
         {
@@ -98,8 +105,8 @@ export const ViewList = () => {
     }
   };
 
-  const renderRightActions = item => {
-    const {status, completed, documentType} = item;
+  const renderRightActions = (item: IndividualCheckListDataType) => {
+    const {completed} = item;
     const details = getDetailsBasedOn(completed);
 
     let firstButtonDetails = {...details[0]};
@@ -117,7 +124,7 @@ export const ViewList = () => {
     );
   };
 
-  const renderListCards = ({item}) => {
+  const renderListCards = ({item}: {item: IndividualCheckListDataType}) => {
     return (
       <>
         {!item.completed && (
@@ -135,7 +142,11 @@ export const ViewList = () => {
     );
   };
 
-  const renderCompletedItems = ({item}) => {
+  const renderCompletedItems = ({
+    item,
+  }: {
+    item: IndividualCheckListDataType;
+  }) => {
     return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <ListCard
@@ -170,7 +181,6 @@ export const ViewList = () => {
             <Text style={styles.separatorText}>Completed tasks</Text>
           </View>
           <FlatList
-            keyExtractor={item => item.id}
             data={personalCompletedChecklist}
             renderItem={renderCompletedItems}
           />
@@ -205,7 +215,6 @@ export const ViewList = () => {
         scrollEnabled
         bounces={false}
         data={individualChecklistData}
-        keyExtractor={item => item?.id}
         ListHeaderComponent={renderHeaderComponent}
         renderItem={renderListCards}
         ListFooterComponent={renderCompletedComponent}

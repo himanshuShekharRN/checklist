@@ -5,8 +5,11 @@ import {styles} from './SwipableActionButton.style';
 import {isNonEmptyObject} from './../../utils/helper';
 import {COLOR_WHITE} from './../../utils/colors';
 import {CustomIcon} from './../customIcon/CustomIcon';
+import {SwipableActionButtonProps} from './SwipableAction.type';
 
-export const SwipableActionButton: React.FC = props => {
+export const SwipableActionButton: React.FC<
+  SwipableActionButtonProps
+> = props => {
   const {
     firstButtonDetails = {},
     secondButtonDetails = {},
@@ -17,7 +20,9 @@ export const SwipableActionButton: React.FC = props => {
     <View style={styles.container}>
       {isNonEmptyObject(firstButtonDetails) && (
         <Pressable
-          onPress={() => firstButtonDetails.fn(itemDetails)}
+          onPress={() =>
+            firstButtonDetails?.fn && firstButtonDetails.fn(itemDetails)
+          }
           style={[
             styles.firstContainer,
             {backgroundColor: firstButtonDetails.backgroundColor},
@@ -33,7 +38,9 @@ export const SwipableActionButton: React.FC = props => {
 
       {isNonEmptyObject(secondButtonDetails) && (
         <Pressable
-          onPress={() => secondButtonDetails.fn(itemDetails)}
+          onPress={() =>
+            secondButtonDetails?.fn && secondButtonDetails.fn(itemDetails)
+          }
           style={[
             styles.firstContainer,
             {backgroundColor: secondButtonDetails.backgroundColor},

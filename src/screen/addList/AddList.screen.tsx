@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch} from 'react-redux';
 import {addCheckListToServer} from '../../store/reducer/checklist';
+import {CheckListData} from './AddList.type';
 
 export const AddList = () => {
   const [listTitle, setListTitle] = useState('');
@@ -43,7 +44,7 @@ export const AddList = () => {
 
   const onPressDoneHandler = () => {
     Keyboard.dismiss();
-    const checkListData = {
+    const checkListData: CheckListData = {
       id: Date.now(),
       dateCreated: Date.now(),
       checkListTitle: listTitle,

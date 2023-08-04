@@ -1,4 +1,5 @@
 import {Dimensions} from 'react-native';
+import {Routes} from '../component/customTab/CustomTab.type';
 
 export const getDeviceWidth = (): number => {
   return Dimensions.get('screen').width;
@@ -17,8 +18,38 @@ export const formatDate = (timestamp: number): string => {
   return `${day}.${month}.${year}`;
 };
 
-export const isEmptyObject = obj => {
+export const isEmptyObject = (obj: Object): boolean => {
   return Object.keys(obj).length === 0;
 };
 
-export const isNonEmptyObject = obj => !isEmptyObject(obj);
+export const isNonEmptyObject = (obj: Object): boolean => !isEmptyObject(obj);
+
+export const getRoutes = (): Routes[] => {
+  return [
+    {
+      key: 'first',
+      title: 'STCW National',
+      requireAttention: true,
+    },
+    {
+      key: 'second',
+      title: 'Flag State',
+      requireAttention: true,
+    },
+    {
+      key: 'third',
+      title: 'GDPR Documents',
+      requireAttention: false,
+    },
+    {
+      key: 'fourth',
+      title: 'Training',
+      requireAttention: false,
+    },
+    {
+      key: 'fifth',
+      title: 'Technical',
+      requireAttention: false,
+    },
+  ];
+};
