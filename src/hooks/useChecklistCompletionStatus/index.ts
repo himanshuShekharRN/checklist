@@ -1,10 +1,13 @@
-import {DATA} from '../../utils/mockData';
+import {useSelector} from 'react-redux';
 
 export const useChecklistCompletionStatus = () => {
   let progressStatus = 0;
-  const totalChecklistAvailable = DATA.length;
+  const {departureCheckList} = useSelector(
+    state => state.departureCheckListReducer,
+  );
 
-  const completedChecklist = DATA?.filter(
+  const totalChecklistAvailable = departureCheckList?.length;
+  const completedChecklist = departureCheckList?.filter(
     data => data.completed === true,
   )?.length;
 

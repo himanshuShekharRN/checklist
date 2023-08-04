@@ -21,6 +21,7 @@ export const DepartureDocCard: React.FC = props => {
     documentType,
     status,
     completed,
+    isSkipped,
   } = listData;
 
   const isOptional = documentType === 'optional';
@@ -31,7 +32,11 @@ export const DepartureDocCard: React.FC = props => {
     if (isCompleted) {
       iconName = DONE;
       if (isOptional) {
-        iconName = SKIPPED_OPTIONAL;
+        if (isSkipped) {
+          iconName = SKIPPED_OPTIONAL;
+        } else {
+          iconName = DONE;
+        }
       }
     } else {
       if (isPending) {

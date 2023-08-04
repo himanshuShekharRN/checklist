@@ -1,14 +1,15 @@
 import createSagaMiddleware from 'redux-saga';
 import {configureStore} from '@reduxjs/toolkit';
 import {persistReducer, persistStore} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {appReducer} from './reducer';
 import {rootSaga} from '../network/saga';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['checkListReducer'],
+  whitelist: ['checkListReducer', 'departureCheckListReducer'],
 };
 
 const sagaMiddleware = createSagaMiddleware();

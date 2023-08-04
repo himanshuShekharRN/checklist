@@ -1,3 +1,3 @@
-import {Home} from './home.screen';
+import {Home} from './Home.screen';
 
 export {Home};

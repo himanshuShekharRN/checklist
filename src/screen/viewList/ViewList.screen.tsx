@@ -12,22 +12,30 @@ import {
 } from '../../component';
 import {styles} from './ViewList.style';
 import {useDispatch, useSelector} from 'react-redux';
-import {getTasks, resetTask} from '../../store/reducer/checklist';
-import {DELETE, DONE, UNCHECK} from '../../utils/iconsName';
+import {
+  deleteIndividualChecklist,
+  getTasks,
+  updateTaskStatus,
+  resetTask,
+} from '../../store/reducer/checklist';
+import {DELETE, DONE, FILE_FILLED, UNCHECK} from '../../utils/iconsName';
 import {COLOR_GREEN_600, COLOR_RED_500} from '../../utils/colors';
+import {usePersonalChecklistData} from '../../hooks/usePersonalChecklistData';
+import {UNCHECKED} from '../../utils/constant';
 
 export const ViewList = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
   const isScreenInFocus = useIsFocused();
+  const [personalCompletedChecklist, personalIncompleteChecklist] =
+    usePersonalChecklistData();
   const {listId, listTitle} = route?.params;
 
   const {individualChecklistData} = useSelector(
     state => state.checkListReducer,
   );
 
-  const [listData, setListData] = useState([]);
   const [currentList, setCurrentList] = useState('');
 
   const goBack = () => navigation.goBack();
@@ -42,7 +50,7 @@ export const ViewList = () => {
   };
 
   const handleOnPress = () => {
-    navigation.navigate('EditList', {
+    navigation.replace('EditList', {
       listId: listId,
       listTitle: listTitle,
     });
@@ -56,15 +64,11 @@ export const ViewList = () => {
     }
   }, [isScreenInFocus, listId, dispatch]);
 
-  useEffect(() => {
-    if (individualChecklistData?.length > 0) {
-      setListData(individualChecklistData);
-    }
-  }, [individualChecklistData, setListData]);
-
-  const handleOnUncheck = items => console.log('UNCHECK', items);
-  const handleOnDelete = items => console.log('DELETE', items);
-  const handleOnDone = items => console.log('DONE', items);
+  const handleOnUncheck = items =>
+    dispatch(updateTaskStatus({items, listId, key: UNCHECKED}));
+  const handleOnDelete = items =>
+    dispatch(deleteIndividualChecklist({items, listId}));
+  const handleOnDone = items => dispatch(updateTaskStatus({items, listId}));
 
   const getDetailsBasedOn = _isCompleted => {
     if (_isCompleted) {
@@ -115,16 +119,64 @@ export const ViewList = () => {
 
   const renderListCards = ({item}) => {
     return (
+      <>
+        {!item.completed && (
+          <SwipableCards renderRightActions={() => renderRightActions(item)}>
+            <ListCard
+              iconName={FILE_FILLED}
+              editable={item.isEditable}
+              readonly={item.isReadOnly}
+              listTitle={item.text ? item.text : currentList}
+              onChangeTextHandler={onChangeTextHandler}
+            />
+          </SwipableCards>
+        )}
+      </>
+    );
+  };
+
+  const renderCompletedItems = ({item}) => {
+    return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <ListCard
-          iconName="description"
+          iconName={FILE_FILLED}
           editable={item.isEditable}
           readonly={item.isReadOnly}
+          textStyle={styles.textStyle}
           listTitle={item.text ? item.text : currentList}
           onChangeTextHandler={onChangeTextHandler}
         />
       </SwipableCards>
     );
+  };
+
+  const renderHeaderComponent = () => {
+    if (
+      personalIncompleteChecklist?.length !== 0 &&
+      personalCompletedChecklist?.length > 0
+    ) {
+      return (
+        <View style={styles.toDoSeparatorContainer}>
+          <Text style={styles.separatorText}>To-do</Text>
+        </View>
+      );
+    }
+  };
+  const renderCompletedComponent = () => {
+    if (personalCompletedChecklist?.length > 0) {
+      return (
+        <View>
+          <View style={styles.completeSeparatorContainer}>
+            <Text style={styles.separatorText}>Completed tasks</Text>
+          </View>
+          <FlatList
+            keyExtractor={item => item.id}
+            data={personalCompletedChecklist}
+            renderItem={renderCompletedItems}
+          />
+        </View>
+      );
+    }
   };
 
   return (
@@ -152,9 +204,11 @@ export const ViewList = () => {
       <FlatList
         scrollEnabled
         bounces={false}
-        data={listData}
+        data={individualChecklistData}
         keyExtractor={item => item?.id}
+        ListHeaderComponent={renderHeaderComponent}
         renderItem={renderListCards}
+        ListFooterComponent={renderCompletedComponent}
       />
     </SafeAreaView>
   );

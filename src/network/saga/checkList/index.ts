@@ -1,4 +1,4 @@
-import {call, delay, put, takeEvery} from 'redux-saga/effects';
+import {delay, put, takeEvery} from 'redux-saga/effects';
 import {
   addCheckListToServer,
   checkListAddedToServerFailed,
@@ -14,10 +14,7 @@ export function* handleAddCheckListToServer(action) {
   try {
     //mocking api calls
     const response = action?.payload;
-    console.log(
-      '🚀 ~ file: index.ts:17 ~ function*handleAddCheckListToServer ~ response:',
-      response,
-    );
+
     if (API_RESPONSE_SUCCESS) {
       delay(500);
       yield put(checkListAddedToServerSuccess(response));

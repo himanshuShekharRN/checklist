@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {
   Title,
@@ -14,10 +14,12 @@ import {
 import {styles} from './MyCheckList.style';
 import {COLOR_GREY_600, COLOR_RED_500} from '../../utils/colors';
 import {formatDate} from '../../utils/helper';
-import {DELETE} from '../../utils/iconsName';
+import {DELETE, RIGHT_ANGLE_BRACKET} from '../../utils/iconsName';
+import {deleteChecklist} from '../../store/reducer/checklist';
 
 export const MyCheckList: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const {checklistData} = useSelector(state => state.checkListReducer);
 
   const onPressHandler = useCallback(
@@ -28,13 +30,13 @@ export const MyCheckList: React.FC = () => {
       }),
     [navigation],
   );
-  const fn1 = items => {
-    console.log('=====>itesm==>fn1', items);
+  const handleDelete = items => {
+    dispatch(deleteChecklist(items));
   };
 
   const renderRightActions = item => {
     const firstButtonDetails = {
-      fn: fn1,
+      fn: handleDelete,
       backgroundColor: COLOR_RED_500,
       iconName: DELETE,
       iconText: 'Delete',
@@ -66,7 +68,7 @@ export const MyCheckList: React.FC = () => {
             </View>
           </View>
           <CustomIcon
-            name="keyboard-arrow-right"
+            name={RIGHT_ANGLE_BRACKET}
             size={14}
             isPressable={false}
             color={COLOR_GREY_600}
@@ -75,6 +77,12 @@ export const MyCheckList: React.FC = () => {
       </SwipableCards>
     );
   };
+
+  const renderEmptyContent = () => (
+    <View style={styles.emptyContentContainer}>
+      <Text style={styles.emptyText}>No Personal Checklist Found!</Text>
+    </View>
+  );
 
   const renderItemSeparator = () => <View style={styles.separator} />;
 
@@ -89,6 +97,7 @@ export const MyCheckList: React.FC = () => {
         scrollEnabled
         bounces={false}
         data={checklistData}
+        ListEmptyComponent={renderEmptyContent}
         keyExtractor={item => item?.id}
         ItemSeparatorComponent={renderItemSeparator}
         renderItem={renderCardItems}

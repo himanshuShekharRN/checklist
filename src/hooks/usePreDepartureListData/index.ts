@@ -1,10 +1,17 @@
-import {DATA} from '../../utils/mockData';
+import {useSelector} from 'react-redux';
 
 export const usePreDepartureListData = () => {
-  const allPreDepartureDataList = DATA;
-  const completedPreDepartureDataList = DATA.filter(
+  const {departureCheckList: allPreDepartureDataList} = useSelector(
+    state => state.departureCheckListReducer,
+  );
+
+  const completedPreDepartureDataList = allPreDepartureDataList?.filter(
     data => data.completed === true,
   );
 
-  return [allPreDepartureDataList, completedPreDepartureDataList];
+  const inCompletePreDepartureList = allPreDepartureDataList?.filter(
+    data => data.completed === false,
+  );
+
+  return [inCompletePreDepartureList, completedPreDepartureDataList];
 };

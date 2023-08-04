@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Alert} from 'react-native';
 
 import {
   DepartureDocCard,
@@ -14,20 +14,42 @@ import {
 } from '../../utils/colors';
 import {styles} from './NationalChecklist.style';
 import {DONE, SKIPPED_OPTIONAL, UNCHECK} from '../../utils/iconsName';
-import {DATA} from '../../utils/mockData';
 import {
   useChecklistCompletionStatus,
   usePreDepartureListData,
 } from '../../hooks';
+import {useDispatch} from 'react-redux';
+import {
+  checklistSubmitted,
+  checklistUnchecked,
+} from '../../store/reducer/departureChecklist';
+import {ALERT_MSG, SKIPPED, UNCHECKED} from '../../utils/constant';
 
 export const NationalChecklist: React.FC = () => {
   const [completedChecklist] = useChecklistCompletionStatus();
-  const completedPreDepartureDataList = usePreDepartureListData();
+  const [inCompletePreDepartureList, completedPreDepartureDataList] =
+    usePreDepartureListData();
 
-  const handleOnSubmit = items => console.log('SUBMIT', items);
-  const handleOnSkip = items => console.log('SKIP', items);
-  const handleOnDone = items => console.log('DONE', items);
-  const handleOnUncheck = items => console.log('UNCHECK', items);
+  const dispatch = useDispatch();
+
+  const handleOnSubmit = items => {
+    const submitTheChecklist = () => {
+      dispatch(checklistSubmitted(items));
+    };
+
+    Alert.alert(null, ALERT_MSG, [
+      {
+        text: 'No',
+        onPress: () => {},
+      },
+      {text: 'Yes', onPress: submitTheChecklist},
+    ]);
+  };
+  const handleOnSkip = items =>
+    dispatch(checklistSubmitted({items, key: SKIPPED}));
+  const handleOnDone = items =>
+    dispatch(checklistSubmitted({items, key: DONE}));
+  const handleOnUncheck = items => dispatch(checklistUnchecked(items));
 
   const getDetailsBasedOn = (_docType, _isCompleted = false) => {
     if (_isCompleted) {
@@ -129,7 +151,7 @@ export const NationalChecklist: React.FC = () => {
             <Text style={styles.completedText}>Completed</Text>
           </View>
           <FlatList
-            data={completedPreDepartureDataList[1]}
+            data={completedPreDepartureDataList}
             renderItem={renderCompletedItems}
             keyExtractor={item => item.id}
           />
@@ -142,7 +164,7 @@ export const NationalChecklist: React.FC = () => {
 
   return (
     <FlatList
-      data={DATA}
+      data={inCompletePreDepartureList}
       bounces={false}
       showsVerticalScrollIndicator={false}
       ListHeaderComponent={getHeaderComponent()}

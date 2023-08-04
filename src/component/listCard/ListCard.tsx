@@ -6,7 +6,14 @@ import {COLOR_WHITE} from '../../utils/colors';
 import {styles} from './ListCard.style';
 
 export const ListCard: React.FC<ListCardProps> = props => {
-  const {iconName, editable, readonly, listTitle, onChangeTextHandler} = props;
+  const {
+    iconName,
+    editable,
+    readonly,
+    textStyle,
+    listTitle,
+    onChangeTextHandler,
+  } = props;
 
   return (
     <View style={styles.container}>
@@ -26,7 +33,7 @@ export const ListCard: React.FC<ListCardProps> = props => {
           onChangeText={onChangeTextHandler}
         />
       )}
-      {readonly && <Text style={styles.text}>{listTitle}</Text>}
+      {readonly && <Text style={[styles.text, textStyle]}>{listTitle}</Text>}
     </View>
   );
 };

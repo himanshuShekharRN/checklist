@@ -1,3 +1,4 @@
+import {UNCHECKED} from './../../../utils/constant';
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
@@ -23,12 +24,12 @@ export const checkListSlice = createSlice({
       state.isAddCheckListSuccess = false;
       state.isAddCheckListFailure = false;
       state.error = null;
-      console.log('====>Hello');
     },
     checkListAddedToServerSuccess: (state, action) => {
       const {payload} = action;
       const checkList = [...state.checklistData];
       checkList.push({...payload});
+
       state.isSendingDataToBE = false;
       state.isAddCheckListSuccess = true;
       state.isAddCheckListFailure = false;
@@ -43,32 +44,26 @@ export const checkListSlice = createSlice({
       state.error = action?.payload;
     },
     addTasks: (state, action) => {
-      const {id, listOfTaskAdded} = action?.payload;
-      console.log('🚀 ~ file: index.ts:47 ~ action?.payload:', action?.payload);
+      const {id, listOfTaskAdded} = action.payload;
+
       const index = state.checklistData.findIndex(
         listData => listData.id === id,
       );
-      console.log('====>AddTask', index);
+
       state.checklistData[index].checkListsData = [...listOfTaskAdded];
       state.checklistData[index].lastItemAddedInList =
         listOfTaskAdded[listOfTaskAdded?.length - 1];
     },
     getTasks: (state, action) => {
-      const {id} = action?.payload;
-      console.log('🚀 ~ file: index.ts:58 ~ id:', id);
-      console.log('====>getTasks==>checklistData', state.checklistData);
+      const {id} = action.payload;
       const index = state.checklistData.findIndex(
         listData => listData.id === id,
       );
-      console.log("🚀 '====>getTasks ~ index:", index);
-      if (index !== 1) {
+
+      if (index !== -1) {
         state.individualChecklistData =
           state.checklistData[index].checkListsData;
       }
-      console.log(
-        '====>getTasks==>individualChecklistData',
-        state.individualChecklistData,
-      );
     },
     resetTask: state => {
       state.individualChecklistData = [];
@@ -84,7 +79,6 @@ export const checkListSlice = createSlice({
       state.isFetchingSuccess = true;
       state.isFetchingFailed = false;
       state.allCheckListData = [...state.checklistData];
-      console.log('====>allCheckListData', state.allCheckListData);
       state.fetchingError = null;
     },
     fetchAllChecklistsFailure: (state, action) => {
@@ -92,6 +86,52 @@ export const checkListSlice = createSlice({
       state.isFetchingSuccess = false;
       state.isFetchingFailed = true;
       state.fetchingError = action.payload;
+    },
+    deleteChecklist: (state, action) => {
+      const {id} = action.payload;
+      const index = state.checklistData?.findIndex(data => data.id === id);
+      state.checklistData.splice(index, 1);
+    },
+    deleteIndividualChecklist: (state, action) => {
+      const {items, listId} = action.payload;
+      const {id} = items;
+
+      const index = state.individualChecklistData?.findIndex(
+        data => data.id === id,
+      );
+      const parentIndex = state.checklistData?.findIndex(
+        data => data?.id === listId,
+      );
+
+      state.individualChecklistData.splice(index, 1);
+
+      state.checklistData[parentIndex].checkListsData =
+        state.individualChecklistData;
+
+      state.checklistData[parentIndex].lastItemAddedInList =
+        state.individualChecklistData[
+          state.individualChecklistData?.length - 1
+        ];
+    },
+    updateTaskStatus: (state, action) => {
+      const {items, listId, key} = action.payload;
+      const {id} = items;
+
+      const parentIndex = state.checklistData?.findIndex(
+        data => data?.id === listId,
+      );
+      state.individualChecklistData.forEach((data, index) => {
+        if (data.id === id) {
+          state.individualChecklistData[index] = {
+            ...state.individualChecklistData[index],
+            completed: key === UNCHECKED ? false : true,
+          };
+        }
+      });
+
+      state.individualChecklistData = [...state.individualChecklistData];
+      state.checklistData[parentIndex].checkListsData =
+        state.individualChecklistData;
     },
   },
 });
@@ -106,6 +146,9 @@ export const {
   addTasks,
   getTasks,
   resetTask,
+  deleteChecklist,
+  deleteIndividualChecklist,
+  updateTaskStatus,
 } = checkListSlice.actions;
 
 export const checkListReducer = checkListSlice.reducer;

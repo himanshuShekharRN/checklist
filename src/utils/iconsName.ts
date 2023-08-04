@@ -7,3 +7,4 @@ export const PENDING = 'info';
 export const UNCHECK = 'panorama-fish-eye';
 export const DELETE = 'delete';
 export const RIGHT_ANGLE_BRACKET = 'keyboard-arrow-right';
+export const HOME = 'home';

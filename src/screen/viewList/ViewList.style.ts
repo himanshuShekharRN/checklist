@@ -1,7 +1,12 @@
 import {StyleSheet} from 'react-native';
-import {COLOR_BLACK, COLOR_NAVY_300, COLOR_TEAL} from '../../utils/colors';
+import {
+  COLOR_BLACK,
+  COLOR_GREY_600,
+  COLOR_NAVY_300,
+  COLOR_TEAL,
+} from '../../utils/colors';
 import {FONT_14, FONT_18} from '../../utils/fontSize';
-import {ROBOTO_BOLD, ROBOTO_REGULAR} from '../../utils/fonts';
+import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR} from '../../utils/fonts';
 
 export const styles = StyleSheet.create({
   safeAreaView: {
@@ -39,5 +44,22 @@ export const styles = StyleSheet.create({
   },
   buttonTitleStyle: {
     color: COLOR_TEAL,
+  },
+  completeSeparatorContainer: {
+    paddingTop: 24,
+    paddingBottom: 12,
+    paddingHorizontal: 16,
+  },
+  separatorText: {
+    fontFamily: ROBOTO_MEDIUM,
+    fontSize: FONT_14,
+    color: COLOR_BLACK,
+  },
+  toDoSeparatorContainer: {
+    paddingBottom: 12,
+    paddingHorizontal: 16,
+  },
+  textStyle: {
+    color: COLOR_GREY_600,
   },
 });

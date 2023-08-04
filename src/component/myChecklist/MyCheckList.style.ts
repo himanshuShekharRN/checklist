@@ -27,4 +27,15 @@ export const styles = StyleSheet.create({
   separator: {
     height: 8,
   },
+  emptyContentContainer: {
+    marginTop: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyText: {
+    fontSize: FONT_12,
+    fontFamily: ROBOTO_REGULAR,
+    color: COLOR_BLACK,
+    textAlign: 'left',
+  },
 });
