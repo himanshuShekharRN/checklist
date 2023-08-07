@@ -1,8 +1,9 @@
 import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 export const usePreDepartureListData = () => {
   const {departureCheckList: allPreDepartureDataList} = useSelector(
-    state => state.departureCheckListReducer,
+    (state: RootState) => state.departureCheckListReducer,
   );
 
   const completedPreDepartureDataList = allPreDepartureDataList?.filter(

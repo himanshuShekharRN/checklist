@@ -1,9 +1,10 @@
 import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 export const useChecklistCompletionStatus = () => {
   let progressStatus = 0;
   const {departureCheckList} = useSelector(
-    state => state.departureCheckListReducer,
+    (state: RootState) => state.departureCheckListReducer,
   );
 
   const totalChecklistAvailable = departureCheckList?.length;

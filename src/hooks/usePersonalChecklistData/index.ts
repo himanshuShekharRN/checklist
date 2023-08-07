@@ -1,8 +1,9 @@
 import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 export const usePersonalChecklistData = () => {
   const {individualChecklistData} = useSelector(
-    state => state.checkListReducer,
+    (state: RootState) => state.checkListReducer,
   );
 
   const personalCompletedChecklist = individualChecklistData?.filter(
