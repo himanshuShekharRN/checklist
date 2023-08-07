@@ -7,7 +7,7 @@ import {store} from '../../src/store';
 import {Provider} from 'react-redux';
 
 describe('View List Screen', () => {
-  const tree: any = render(
+  const tree = render(
     <NavigationContainer>
       <Provider store={store}>
         <ViewList />

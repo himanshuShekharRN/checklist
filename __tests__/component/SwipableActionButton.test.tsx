@@ -15,7 +15,7 @@ describe('SwipableActionButton', () => {
     },
   };
 
-  const tree: any = render(<SwipableActionButton {...props} />);
+  const tree = render(<SwipableActionButton {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

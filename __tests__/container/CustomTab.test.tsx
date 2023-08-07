@@ -47,7 +47,7 @@ describe('CustomTab', () => {
     fifthRoute: getFifthRoute(),
   };
 
-  const tree: any = render(
+  const tree = render(
     <Provider store={store}>
       <CustomTab {...props} />
     </Provider>,

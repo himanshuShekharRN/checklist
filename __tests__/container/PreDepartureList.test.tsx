@@ -6,7 +6,7 @@ import {store} from '../../src/store';
 import {PreDepartureList} from '../../src/container';
 
 describe('PreDepartureList', () => {
-  const tree: any = render(
+  const tree = render(
     <Provider store={store}>
       <PreDepartureList />
     </Provider>,

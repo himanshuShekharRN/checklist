@@ -18,7 +18,7 @@ describe('ListCard', () => {
     onChangeTextHandler: mockFunction,
   };
 
-  const tree: any = render(<ListCard {...props} />);
+  const tree = render(<ListCard {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

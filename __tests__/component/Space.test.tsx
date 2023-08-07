@@ -9,7 +9,7 @@ describe('Space', () => {
     backgroundColor: 'transparent',
   };
 
-  const tree: any = render(<Space {...props} />);
+  const tree = render(<Space {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

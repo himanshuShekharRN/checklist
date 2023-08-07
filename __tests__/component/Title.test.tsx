@@ -8,7 +8,7 @@ describe('SwipableCards', () => {
     subTitle: 'Test Subtitle',
   };
 
-  const tree: any = render(<Title {...props} />);
+  const tree = render(<Title {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

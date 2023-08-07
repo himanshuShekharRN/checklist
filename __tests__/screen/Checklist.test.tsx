@@ -8,7 +8,7 @@ import {store} from '../../src/store';
 import {mockNavigate} from '../../jest/setup';
 
 describe('Checklist Screen', () => {
-  const tree: any = render(
+  const tree = render(
     <NavigationContainer>
       <Provider store={store}>
         <Checklist />

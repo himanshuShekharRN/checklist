@@ -15,7 +15,7 @@ describe('HeadersWithButton', () => {
     testID: 'test',
   };
 
-  const tree: any = render(
+  const tree = render(
     <HeadersWithButton {...props}>
       <Text>Button Content</Text>
     </HeadersWithButton>,

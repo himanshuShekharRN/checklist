@@ -6,7 +6,7 @@ import {store} from '../../src/store';
 import {MyCheckList} from '../../src/container';
 
 describe('MyCheckList', () => {
-  const tree: any = render(
+  const tree = render(
     <Provider store={store}>
       <MyCheckList />
     </Provider>,

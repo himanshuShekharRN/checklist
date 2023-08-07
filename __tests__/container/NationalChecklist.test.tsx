@@ -9,7 +9,7 @@ describe('NationalChecklist', () => {
     testID: 'nationalChecklist',
   };
 
-  const tree: any = render(
+  const tree = render(
     <Provider store={store}>
       <NationalChecklist {...props} />
     </Provider>,

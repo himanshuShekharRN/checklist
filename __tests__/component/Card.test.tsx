@@ -14,7 +14,7 @@ describe('Card', () => {
     cardStyle: customCardStyle,
   };
 
-  const tree: any = render(
+  const tree = render(
     <Card {...props}>
       <Text>Card Content</Text>
     </Card>,
