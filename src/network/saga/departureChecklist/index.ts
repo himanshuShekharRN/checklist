@@ -1,4 +1,4 @@
-import {delay, put, takeEvery} from 'redux-saga/effects';
+import { put, takeEvery} from 'redux-saga/effects';
 
 import {API_RESPONSE_SUCCESS} from '../../../utils/constant';
 import {DATA} from '../../../utils/mockData';
@@ -14,7 +14,6 @@ export function* handleFetchDepartureCheckList() {
     //mocking api calls
     const response = DATA;
     if (API_RESPONSE_SUCCESS) {
-      delay(500);
       yield put(departureChecklistFetchSuccess(response));
     } else {
       yield put(departureChecklistFetchFailed(genericMsg));

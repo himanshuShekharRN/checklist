@@ -19,6 +19,7 @@ import {deleteChecklist} from '../../store/reducer/checklist';
 import {CheckListData} from '../../screen/addList/AddList.type';
 import {FirstButtonDetails} from '../../component/swipableActionButton/SwipableAction.type';
 import {RootState} from '../../store';
+import { CheckListDataType, IndividualCheckListDataType } from '../../store/reducer/checklist/type';
 
 export const MyCheckList: React.FC = () => {
   const navigation = useNavigation();
@@ -28,18 +29,18 @@ export const MyCheckList: React.FC = () => {
   );
 
   const onPressHandler = useCallback(
-    (item: CheckListData) =>
+    (item: CheckListDataType) =>
       navigation.navigate('ViewList', {
         listId: item?.id,
         listTitle: item?.checkListTitle,
       }),
     [navigation],
   );
-  const handleDelete = (items: CheckListData): void => {
+  const handleDelete = (items: CheckListData | IndividualCheckListDataType): void => {
     dispatch(deleteChecklist(items));
   };
 
-  const renderRightActions = (item: CheckListData) => {
+  const renderRightActions = (item: CheckListDataType) => {
     const firstButtonDetails: FirstButtonDetails = {
       fn: handleDelete,
       backgroundColor: COLOR_RED_500,
@@ -54,7 +55,7 @@ export const MyCheckList: React.FC = () => {
     );
   };
 
-  const renderCardItems = ({item}) => {
+  const renderCardItems = ({item}: {item: CheckListDataType}) => {
     return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <Card

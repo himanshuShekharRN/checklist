@@ -26,6 +26,7 @@ import {ButtonHandlerType, ViewListRouteProps} from './ViewList.type';
 import {RootState} from '../../store';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {IndividualCheckListDataType} from '../../store/reducer/checklist/type';
+import { FirstButtonDetails } from '../../component/swipableActionButton/SwipableAction.type';
 
 export const ViewList = () => {
   const navigation = useNavigation<StackNavigationProp<{EditList: {}}>>();
@@ -109,7 +110,7 @@ export const ViewList = () => {
     const {completed} = item;
     const details = getDetailsBasedOn(completed);
 
-    let firstButtonDetails = {...details[0]};
+    let firstButtonDetails = {...details[0]} as FirstButtonDetails;
     let secondButtonDetails = {};
     if (details?.length > 1) {
       secondButtonDetails = {...details[1]};

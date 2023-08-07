@@ -11,7 +11,7 @@ export type CheckListDataType = {
   dateCreated: number;
   checkListTitle: string;
   checkListsData: IndividualCheckListDataType[];
-  lastItemAddedInList: IndividualCheckListDataType[];
+  lastItemAddedInList: IndividualCheckListDataType;
 };
 
 export interface ChecklistReducer {

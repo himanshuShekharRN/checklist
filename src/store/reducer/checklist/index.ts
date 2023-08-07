@@ -20,7 +20,7 @@ export const checkListSlice = createSlice({
   name: 'checkListReducer',
   initialState,
   reducers: {
-    addCheckListToServer: state => {
+    addCheckListToServer: (state, action) => {
       state.isSendingDataToBE = true;
       state.isAddCheckListSuccess = false;
       state.isAddCheckListFailure = false;
@@ -96,7 +96,6 @@ export const checkListSlice = createSlice({
     deleteIndividualChecklist: (state, action) => {
       const {items, listId} = action.payload;
       const {id} = items;
-
       const index = state.individualChecklistData?.findIndex(
         data => data.id === id,
       );
@@ -105,14 +104,12 @@ export const checkListSlice = createSlice({
       );
 
       state.individualChecklistData.splice(index, 1);
-
       state.checklistData[parentIndex].checkListsData =
         state.individualChecklistData;
+      const lastItem = state.individualChecklistData?.length - 1;
 
       state.checklistData[parentIndex].lastItemAddedInList =
-        state.individualChecklistData[
-          state.individualChecklistData?.length - 1
-        ];
+        state.individualChecklistData[lastItem];
     },
     updateTaskStatus: (state, action) => {
       const {items, listId, key} = action.payload;

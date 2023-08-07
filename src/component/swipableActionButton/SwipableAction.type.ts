@@ -1,8 +1,7 @@
-import {CheckListData} from '../../screen/addList/AddList.type';
-import {IndividualCheckListDataType} from '../../store/reducer/checklist/type';
+import {CheckListDataType, IndividualCheckListDataType} from '../../store/reducer/checklist/type';
 
 export type FirstButtonDetails = {
-  fn?: (items: IndividualCheckListDataType | CheckListData) => void;
+  fn?: (items: IndividualCheckListDataType | CheckListDataType) => void;
   backgroundColor?: string;
   iconName?: string;
   iconText?: string;
@@ -11,5 +10,5 @@ export type FirstButtonDetails = {
 export interface SwipableActionButtonProps {
   firstButtonDetails?: FirstButtonDetails;
   secondButtonDetails?: FirstButtonDetails;
-  itemDetails: IndividualCheckListDataType | CheckListData;
+  itemDetails: IndividualCheckListDataType | CheckListDataType;
 }

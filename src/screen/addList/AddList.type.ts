@@ -5,5 +5,5 @@ export type CheckListData = {
   dateCreated: number;
   checkListTitle: string;
   checkListsData: PersonalCheckListItem[];
-  lastItemAddedInList: PersonalCheckListItem[];
+  lastItemAddedInList: PersonalCheckListItem;
 };

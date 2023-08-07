@@ -44,8 +44,8 @@ export const CustomTab: React.FC<CustomTabProps> = props => {
     }
   };
 
-  const getTabBarIcon = props => {
-    const {route} = props;
+  const getTabBarIcon = (_props: any) => {
+    const {route} = _props;
 
     if (route.requireAttention) {
       return (
@@ -62,9 +62,9 @@ export const CustomTab: React.FC<CustomTabProps> = props => {
     }
   };
 
-  const renderTabBar = props => (
+  const renderTabBar = (_props: any) => (
     <TabBar
-      {...props}
+      {..._props}
       scrollEnabled
       activeColor={COLOR_MARLOW_BLUE}
       inactiveColor={COLOR_NAVY_500}

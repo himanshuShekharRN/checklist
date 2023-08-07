@@ -28,7 +28,7 @@ export const SwipableActionButton: React.FC<
             {backgroundColor: firstButtonDetails.backgroundColor},
           ]}>
           <CustomIcon
-            name={firstButtonDetails.iconName}
+            name={firstButtonDetails.iconName ?? ''}
             color={COLOR_WHITE}
             size={24}
           />
@@ -46,7 +46,7 @@ export const SwipableActionButton: React.FC<
             {backgroundColor: secondButtonDetails.backgroundColor},
           ]}>
           <CustomIcon
-            name={secondButtonDetails.iconName}
+            name={secondButtonDetails.iconName ?? '' }
             color={COLOR_WHITE}
             size={24}
           />
