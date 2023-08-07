@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import {useWindowDimensions} from 'react-native';
-import {TabBar, TabBarIndicator, TabView} from 'react-native-tab-view';
+import {
+  NavigationState,
+  SceneRendererProps,
+  TabBar,
+  TabBarIndicator,
+  TabView,
+} from 'react-native-tab-view';
+import {Scene} from 'react-native-tab-view/lib/typescript/src/types';
 
 import {CustomIcon} from '../../component';
 import {COLOR_MARLOW_BLUE, COLOR_NAVY_500, COLOR_RED} from '../../utils/colors';
@@ -44,7 +51,12 @@ export const CustomTab: React.FC<CustomTabProps> = props => {
     }
   };
 
-  const getTabBarIcon = (_props: any) => {
+  const getTabBarIcon = (
+    _props: Scene<Routes> & {
+      focused: boolean;
+      color: string;
+    },
+  ) => {
     const {route} = _props;
 
     if (route.requireAttention) {
@@ -62,7 +74,11 @@ export const CustomTab: React.FC<CustomTabProps> = props => {
     }
   };
 
-  const renderTabBar = (_props: any) => (
+  const renderTabBar = (
+    _props: SceneRendererProps & {
+      navigationState: NavigationState<Routes>;
+    },
+  ) => (
     <TabBar
       {..._props}
       scrollEnabled

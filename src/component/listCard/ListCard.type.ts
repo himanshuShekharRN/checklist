@@ -6,5 +6,5 @@ export interface ListCardProps {
   readonly?: boolean;
   listTitle?: string;
   textStyle?: TextStyle;
-  onChangeTextHandler?: (text: string) => void;
+  onChangeTextHandler?: ((text: string) => void) | undefined;
 }

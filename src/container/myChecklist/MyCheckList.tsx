@@ -16,10 +16,14 @@ import {COLOR_GREY_600, COLOR_RED_500} from '../../utils/colors';
 import {formatDate} from '../../utils/helper';
 import {DELETE, RIGHT_ANGLE_BRACKET} from '../../utils/iconsName';
 import {deleteChecklist} from '../../store/reducer/checklist';
-import {CheckListData} from '../../screen/addList/AddList.type';
+
 import {FirstButtonDetails} from '../../component/swipableActionButton/SwipableAction.type';
 import {RootState} from '../../store';
-import { CheckListDataType, IndividualCheckListDataType } from '../../store/reducer/checklist/type';
+import {
+  CheckListDataType,
+  IndividualCheckListDataType,
+} from '../../store/reducer/checklist/type';
+import {DepartureCheckListDataType} from '../../store/reducer/departureChecklist/type';
 
 export const MyCheckList: React.FC = () => {
   const navigation = useNavigation();
@@ -36,7 +40,12 @@ export const MyCheckList: React.FC = () => {
       }),
     [navigation],
   );
-  const handleDelete = (items: CheckListData | IndividualCheckListDataType): void => {
+  const handleDelete = (
+    items:
+      | CheckListDataType
+      | IndividualCheckListDataType
+      | DepartureCheckListDataType,
+  ): void => {
     dispatch(deleteChecklist(items));
   };
 

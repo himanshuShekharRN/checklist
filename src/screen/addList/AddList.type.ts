@@ -1,9 +1,9 @@
-import {PersonalCheckListItem} from '../../container/departureDocCard/DepartureDocCard.type';
+import {DepartureCheckListDataType} from '../../store/reducer/departureChecklist/type';
 
 export type CheckListData = {
   id: number;
   dateCreated: number;
   checkListTitle: string;
-  checkListsData: PersonalCheckListItem[];
-  lastItemAddedInList: PersonalCheckListItem;
+  checkListsData: DepartureCheckListDataType[];
+  lastItemAddedInList?: DepartureCheckListDataType | null;
 };

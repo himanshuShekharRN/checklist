@@ -4,9 +4,10 @@ import {DepartureDocCard} from '../../src/container';
 
 describe('DepartureDocCard', () => {
   const listData = {
+    id: 2,
     documentName: 'test',
     nationality: 'RUS',
-    docNumber: 87236487,
+    docNumber: '87236487',
     issueDate: '20.08.23',
     expiryDate: '31.08.23',
     documentType: 'mandatory',

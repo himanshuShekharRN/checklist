@@ -19,7 +19,14 @@ export const AddList = () => {
   const [listTitle, setListTitle] = useState('');
   const [showCrossIcon, setShowCrossIcon] = useState(false);
 
-  const navigation = useNavigation<StackNavigationProp<{EditList: {}}>>();
+  const navigation = useNavigation<
+    StackNavigationProp<{
+      EditList: {
+        listId: number;
+        listTitle: string;
+      };
+    }>
+  >();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,7 +56,7 @@ export const AddList = () => {
       dateCreated: Date.now(),
       checkListTitle: listTitle,
       checkListsData: [],
-      lastItemAddedInList: [],
+      lastItemAddedInList: null,
     };
     dispatch(addCheckListToServer(checkListData));
     navigation.replace('EditList', {

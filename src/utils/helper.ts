@@ -18,11 +18,11 @@ export const formatDate = (timestamp: number): string => {
   return `${day}.${month}.${year}`;
 };
 
-export const isEmptyObject = (obj: Object): boolean => {
+export const isEmptyObject = (obj: object): boolean => {
   return Object.keys(obj).length === 0;
 };
 
-export const isNonEmptyObject = (obj: Object): boolean => !isEmptyObject(obj);
+export const isNonEmptyObject = (obj: object): boolean => !isEmptyObject(obj);
 
 export const getRoutes = (): Routes[] => {
   return [

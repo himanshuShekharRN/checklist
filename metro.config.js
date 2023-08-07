@@ -1,6 +1,5 @@
-const {getDefaultConfig} = require('metro-config');
-
 module.exports = (async () => {
+  const {getDefaultConfig} = await require('metro-config');
   const {
     resolver: {sourceExts, assetExts},
   } = await getDefaultConfig();

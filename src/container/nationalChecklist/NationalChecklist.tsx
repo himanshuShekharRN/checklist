@@ -34,8 +34,12 @@ import {
 import {ALERT_MSG, SKIPPED} from '../../utils/constant';
 import {NationalChecklistProps} from './NationalChecklist.type';
 import {DepartureDocCard} from '../departureDocCard';
-import { DepartureCheckListDataType } from '../../store/reducer/departureChecklist/type';
-import { PersonalCheckListItem } from '../departureDocCard/DepartureDocCard.type';
+import {DepartureCheckListDataType} from '../../store/reducer/departureChecklist/type';
+
+import {
+  CheckListDataType,
+  IndividualCheckListDataType,
+} from '../../store/reducer/checklist/type';
 
 export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
   const {testID} = props;
@@ -78,7 +82,18 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     outputRange: ['280deg', '360deg'],
   });
 
-  const handleOnSubmit = (items: DepartureCheckListDataType) => {
+  useEffect(() => {
+    if (modalVisible) {
+      startRotationAnimation();
+    }
+  }, [modalVisible, startRotationAnimation]);
+
+  const handleOnSubmit = (
+    items:
+      | DepartureCheckListDataType
+      | IndividualCheckListDataType
+      | CheckListDataType,
+  ) => {
     const submitTheChecklist = () => {
       setModalVisible(true);
       dispatch(checklistSubmitted({items}));
@@ -93,19 +108,26 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     ]);
   };
 
-  useEffect(() => {
-    if (modalVisible) {
-      startRotationAnimation();
-    }
-  }, [modalVisible, startRotationAnimation]);
+  const handleOnSkip = (
+    items:
+      | DepartureCheckListDataType
+      | IndividualCheckListDataType
+      | CheckListDataType,
+  ) => dispatch(checklistSubmitted({items, key: SKIPPED}));
+  const handleOnDone = (
+    items:
+      | DepartureCheckListDataType
+      | IndividualCheckListDataType
+      | CheckListDataType,
+  ) => dispatch(checklistSubmitted({items, key: DONE}));
+  const handleOnUncheck = (
+    items:
+      | DepartureCheckListDataType
+      | IndividualCheckListDataType
+      | CheckListDataType,
+  ) => dispatch(checklistUnchecked(items));
 
-  const handleOnSkip = (items: DepartureCheckListDataType) =>
-    dispatch(checklistSubmitted({items, key: SKIPPED}));
-  const handleOnDone = (items: DepartureCheckListDataType) =>
-    dispatch(checklistSubmitted({items, key: DONE}));
-  const handleOnUncheck = (items: DepartureCheckListDataType) => dispatch(checklistUnchecked(items));
-
-  const getDetailsBasedOn = (_docType: string, _isCompleted = false)  => {
+  const getDetailsBasedOn = (_docType: string, _isCompleted = false) => {
     if (_isCompleted) {
       return [
         {
@@ -151,26 +173,29 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     }
   };
 
-  const renderRightActions = (item: PersonalCheckListItem) => {
+  const renderRightActions = (item: DepartureCheckListDataType) => {
     const {completed, documentType} = item;
     const details = getDetailsBasedOn(documentType, completed);
 
-    const firstButtonDetails = {...details[0]};
-    let secondButtonDetails = {};
-    if (details?.length > 1) {
-      secondButtonDetails = {...details[1]};
+    if (details) {
+      const firstButtonDetails = {...details[0]};
+      let secondButtonDetails = {};
+      if (details?.length > 1) {
+        secondButtonDetails = {...details[1]};
+      }
+      return (
+        <SwipableActionButton
+          firstButtonDetails={firstButtonDetails}
+          secondButtonDetails={secondButtonDetails}
+          itemDetails={item}
+        />
+      );
+    } else {
+      return null;
     }
-
-    return (
-      <SwipableActionButton
-        firstButtonDetails={firstButtonDetails}
-        secondButtonDetails={secondButtonDetails}
-        itemDetails={item}
-      />
-    );
   };
 
-  const renderItem = ({item}: {item:PersonalCheckListItem }) => {
+  const renderItem = ({item}: {item: DepartureCheckListDataType}) => {
     return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <DepartureDocCard listData={item} />
@@ -189,7 +214,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     </View>
   );
 
-  const renderCompletedItems = ({item}: {item:PersonalCheckListItem }) => {
+  const renderCompletedItems = ({item}: {item: DepartureCheckListDataType}) => {
     return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <DepartureDocCard disabledTextColor={COLOR_GREY_600} listData={item} />
@@ -207,7 +232,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
           <FlatList
             data={completedPreDepartureDataList}
             renderItem={renderCompletedItems}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.id.toString()}
           />
         </>
       );

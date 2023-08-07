@@ -1,5 +1,4 @@
 import React from 'react';
-// import {create, act} from 'react-test-renderer';
 import {render, screen, fireEvent} from '@testing-library/react-native';
 import {Checklist} from '../../src/screen';
 import {NavigationContainer} from '@react-navigation/native';

@@ -1,15 +1,6 @@
-export type PersonalCheckListItem = {
-  documentName: string;
-  nationality: string;
-  docNumber: number;
-  issueDate: string;
-  expiryDate: string;
-  documentType: string;
-  status: string;
-  completed: boolean;
-  isSkipped: boolean;
-};
+import {DepartureCheckListDataType} from '../../store/reducer/departureChecklist/type';
+
 export interface DepartureDocCardProps {
-  listData: PersonalCheckListItem;
+  listData: DepartureCheckListDataType;
   disabledTextColor?: string;
 }

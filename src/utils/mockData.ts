@@ -132,7 +132,3 @@ export const DATA = [
     completed: false,
   },
 ];
-
-// documentType: 'mandatory' || 'actionRequired' || 'optional',
-// status: 'submitted' || 'skipped' || 'new' || 'pending',
-// {"completed": false, "id": 1691057621040, "isEditable": false, "isReadOnly": true, "text": "Test 5"}

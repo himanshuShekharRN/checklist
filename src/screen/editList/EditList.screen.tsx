@@ -16,7 +16,14 @@ import {RootState} from '../../store';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const EditList = () => {
-  const navigation = useNavigation<StackNavigationProp<{ViewList: {}}>>();
+  const navigation = useNavigation<
+    StackNavigationProp<{
+      ViewList: {
+        listId: number;
+        listTitle: string;
+      };
+    }>
+  >();
 
   const dispatch = useDispatch();
   const {individualChecklistData} = useSelector(

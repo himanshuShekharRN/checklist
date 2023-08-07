@@ -25,11 +25,21 @@ import {UNCHECKED} from '../../utils/constant';
 import {ButtonHandlerType, ViewListRouteProps} from './ViewList.type';
 import {RootState} from '../../store';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {IndividualCheckListDataType} from '../../store/reducer/checklist/type';
-import { FirstButtonDetails } from '../../component/swipableActionButton/SwipableAction.type';
+import {
+  CheckListDataType,
+  IndividualCheckListDataType,
+} from '../../store/reducer/checklist/type';
+import {FirstButtonDetails} from '../../component/swipableActionButton/SwipableAction.type';
 
 export const ViewList = () => {
-  const navigation = useNavigation<StackNavigationProp<{EditList: {}}>>();
+  const navigation = useNavigation<
+    StackNavigationProp<{
+      EditList: {
+        listId: number;
+        listTitle: string;
+      };
+    }>
+  >();
   const route = useRoute<ViewListRouteProps>();
   const dispatch = useDispatch();
   const isScreenInFocus = useIsFocused();
@@ -71,12 +81,15 @@ export const ViewList = () => {
     }
   }, [isScreenInFocus, listId, dispatch]);
 
-  const handleOnUncheck = (items: IndividualCheckListDataType) =>
-    dispatch(updateTaskStatus({items, listId, key: UNCHECKED}));
-  const handleOnDelete = (items: IndividualCheckListDataType) =>
-    dispatch(deleteIndividualChecklist({items, listId}));
-  const handleOnDone = (items: IndividualCheckListDataType) =>
-    dispatch(updateTaskStatus({items, listId}));
+  const handleOnUncheck = (
+    items: IndividualCheckListDataType | CheckListDataType,
+  ) => dispatch(updateTaskStatus({items, listId, key: UNCHECKED}));
+  const handleOnDelete = (
+    items: IndividualCheckListDataType | CheckListDataType,
+  ) => dispatch(deleteIndividualChecklist({items, listId}));
+  const handleOnDone = (
+    items: IndividualCheckListDataType | CheckListDataType,
+  ) => dispatch(updateTaskStatus({items, listId}));
 
   const getDetailsBasedOn = (_isCompleted: boolean): ButtonHandlerType[] => {
     if (_isCompleted) {
