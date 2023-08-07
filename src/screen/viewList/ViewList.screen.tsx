@@ -110,7 +110,7 @@ export const ViewList = () => {
     const {completed} = item;
     const details = getDetailsBasedOn(completed);
 
-    let firstButtonDetails = {...details[0]} as FirstButtonDetails;
+    const firstButtonDetails = {...details[0]} as FirstButtonDetails;
     let secondButtonDetails = {};
     if (details?.length > 1) {
       secondButtonDetails = {...details[1]};

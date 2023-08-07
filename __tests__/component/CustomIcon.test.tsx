@@ -18,7 +18,7 @@ describe('CustomIcon', () => {
     iconWrapperStyle: iconWrapperStyle,
   };
 
-  let tree: any = render(<CustomIcon {...props} />);
+  const tree: any = render(<CustomIcon {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

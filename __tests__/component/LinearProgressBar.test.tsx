@@ -7,7 +7,7 @@ describe('LinearProgressBar', () => {
     progressStatus: 80,
   };
 
-  let tree: any = render(<LinearProgressBar {...props} />);
+  const tree: any = render(<LinearProgressBar {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

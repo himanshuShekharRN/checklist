@@ -8,7 +8,7 @@ import {API_RESPONSE_SUCCESS} from '../../../utils/constant';
 import { CheckListData } from '../../../screen/addList/AddList.type';
 
 export function* handleAddCheckListToServer(action: { payload: CheckListData; }) {
-  let genericMsg = 'Something went wrong';
+  const genericMsg = 'Something went wrong';
   try {
     //mocking api calls
     const response = action?.payload;

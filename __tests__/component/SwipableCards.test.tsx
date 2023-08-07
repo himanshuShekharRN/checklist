@@ -8,7 +8,7 @@ describe('SwipableCards', () => {
     renderRightActions: jest.fn(),
   };
 
-  let tree: any = render(
+  const tree: any = render(
     <SwipableCards {...props}>
       <Text>Swipable Card Content</Text>
     </SwipableCards>,

@@ -153,7 +153,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     const {completed, documentType} = item;
     const details = getDetailsBasedOn(documentType, completed);
 
-    let firstButtonDetails = {...details[0]};
+    const firstButtonDetails = {...details[0]};
     let secondButtonDetails = {};
     if (details?.length > 1) {
       secondButtonDetails = {...details[1]};

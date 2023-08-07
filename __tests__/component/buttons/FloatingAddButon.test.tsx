@@ -16,7 +16,7 @@ describe('Floating Add Button', () => {
     containerStyle: customContainerStyle,
   };
 
-  let tree: any = render(<FloatingAddButton {...floatingButtonProps} />);
+  const tree: any = render(<FloatingAddButton {...floatingButtonProps} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

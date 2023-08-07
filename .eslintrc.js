@@ -6,11 +6,16 @@
 
 module.exports = {
   root: true,
-  extends: '@react-native',
+  env: {
+    node: true
+  },
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  parserOptions: {  "sourceType": "module" },
   rules: {
     'no-console': 2,
     'max-lines': [0, {max: 400}],
     'no-unused-vars': 2,
-    'react-native/no-inline-styles': 2,
   },
 };

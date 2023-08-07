@@ -15,7 +15,7 @@ describe('CustomSVG', () => {
     customStyle: customStyle,
   };
 
-  let tree: any = render(<CustomSVG {...props} />);
+  const tree: any = render(<CustomSVG {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

@@ -18,7 +18,7 @@ describe('DepartureDocCard', () => {
     listData: listData,
   };
 
-  let tree: any = render(<DepartureDocCard {...props} />);
+  const tree: any = render(<DepartureDocCard {...props} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

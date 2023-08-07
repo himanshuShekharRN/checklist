@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {mockNavigate} from '../../jest/setup';
 
 describe('Home Screen', () => {
-  let tree: any = render(
+  const tree: any = render(
     <NavigationContainer>
       <Home />
     </NavigationContainer>,

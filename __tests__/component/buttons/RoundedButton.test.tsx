@@ -16,7 +16,7 @@ describe('Rounded Button', () => {
     buttonTitleStyle: customBtnTitleStyle,
   };
 
-  let tree: any = render(<RoundedButton {...roundedButtonProps} />);
+  const tree: any = render(<RoundedButton {...roundedButtonProps} />);
 
   test('renders correctly', () => {
     expect(tree.toJSON()).toBeTruthy();

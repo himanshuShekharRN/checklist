@@ -9,7 +9,7 @@ import {
 } from '../../../store/reducer/departureChecklist';
 
 export function* handleFetchDepartureCheckList() {
-  let genericMsg = 'Something went wrong';
+  const genericMsg = 'Something went wrong';
   try {
     //mocking api calls
     const response = DATA;

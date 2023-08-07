@@ -6,7 +6,7 @@ import {store} from '../../src/store';
 import {render, screen} from '@testing-library/react-native';
 
 describe('Review Screen', () => {
-  let tree: any = render(
+  const tree: any = render(
     <NavigationContainer>
       <Provider store={store}>
         <ReviewList />
