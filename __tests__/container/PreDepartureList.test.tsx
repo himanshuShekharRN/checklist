@@ -1,8 +1,9 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import {PreDepartureList} from '../../src/component';
+
 import {Provider} from 'react-redux';
 import {store} from '../../src/store';
+import {PreDepartureList} from '../../src/container';
 
 describe('PreDepartureList', () => {
   let tree: any = render(

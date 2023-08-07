@@ -1,8 +1,9 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import {MyCheckList} from '../../src/component';
+
 import {Provider} from 'react-redux';
 import {store} from '../../src/store';
+import {MyCheckList} from '../../src/container';
 
 describe('MyCheckList', () => {
   let tree: any = render(

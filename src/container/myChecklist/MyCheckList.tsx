@@ -10,14 +10,14 @@ import {
   CustomIcon,
   SwipableActionButton,
   SwipableCards,
-} from '../';
+} from '../../component';
 import {styles} from './MyCheckList.style';
 import {COLOR_GREY_600, COLOR_RED_500} from '../../utils/colors';
 import {formatDate} from '../../utils/helper';
 import {DELETE, RIGHT_ANGLE_BRACKET} from '../../utils/iconsName';
 import {deleteChecklist} from '../../store/reducer/checklist';
 import {CheckListData} from '../../screen/addList/AddList.type';
-import {FirstButtonDetails} from '../swipableActionButton/SwipableAction.type';
+import {FirstButtonDetails} from '../../component/swipableActionButton/SwipableAction.type';
 import {RootState} from '../../store';
 
 export const MyCheckList: React.FC = () => {
@@ -99,7 +99,7 @@ export const MyCheckList: React.FC = () => {
       />
       <Space height={12} />
       <FlatList
-        scrollEnabled
+        scrollEnabled={false}
         bounces={false}
         data={checklistData}
         ListEmptyComponent={renderEmptyContent}

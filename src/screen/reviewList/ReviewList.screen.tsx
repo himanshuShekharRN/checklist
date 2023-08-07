@@ -3,24 +3,20 @@ import {Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {
-  HeadersWithButton,
-  LinearProgressBar,
-  Space,
-  CustomTab,
-  NationalChecklist,
-} from '../../component';
+import {HeadersWithButton, LinearProgressBar, Space} from '../../component';
 import {styles} from './ReviewList.style';
 import {COLOR_WHITE} from '../../utils/colors';
 import {useChecklistCompletionStatus} from '../../hooks';
 import {
+  CustomTab,
   FifthRoute,
   FirstRoute,
   FourthRoute,
   SecondRoute,
   ThirdRoute,
-} from '../../component/customTab';
+} from '../../container/customTab';
 import {getRoutes} from '../../utils/helper';
+import {NationalChecklist} from '../../container';
 
 export const ReviewList: React.FC = () => {
   const navigation = useNavigation();

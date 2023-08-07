@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {CustomIcon} from '../';
+import {CustomIcon} from '../../component';
 import {COLOR_MARLOW_BLUE} from '../../utils/colors';
 import {styles} from './DepartureDocCard.style';
 import {

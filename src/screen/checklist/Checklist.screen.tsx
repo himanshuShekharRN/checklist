@@ -2,14 +2,9 @@ import React from 'react';
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 
 import {styles} from './Checklist.style';
-import {
-  PreDepartureList,
-  Space,
-  MyCheckList,
-  FloatingAddButton,
-  HeadersWithButton,
-} from '../../component';
+import {Space, FloatingAddButton, HeadersWithButton} from '../../component';
 import {useNavigation} from '@react-navigation/native';
+import {MyCheckList, PreDepartureList} from '../../container';
 
 export const Checklist = () => {
   const navigation = useNavigation();

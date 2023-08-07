@@ -1,4 +1,4 @@
-import {PersonalCheckListItem} from '../../component/departureDocCard/DepartureDocCard.type';
+import {PersonalCheckListItem} from '../../container/departureDocCard/DepartureDocCard.type';
 
 export type CheckListData = {
   id: number;

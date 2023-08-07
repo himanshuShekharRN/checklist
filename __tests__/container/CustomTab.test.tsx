@@ -1,16 +1,17 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import {CustomTab, NationalChecklist} from '../../src/component';
 import {getRoutes} from '../../src/utils/helper';
+
+import {Provider} from 'react-redux';
+import {store} from '../../src/store';
+import {CustomTab, NationalChecklist} from '../../src/container';
 import {
   FifthRoute,
   FirstRoute,
   FourthRoute,
   SecondRoute,
   ThirdRoute,
-} from '../../src/component/customTab';
-import {Provider} from 'react-redux';
-import {store} from '../../src/store';
+} from '../../src/container/customTab';
 
 describe('CustomTab', () => {
   const getFirstRoute = () => {

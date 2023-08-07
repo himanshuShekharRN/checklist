@@ -2,9 +2,7 @@ export type CheckListStackParamList = {
   Home: undefined;
   CheckList: undefined;
   AddList: undefined;
-  ReviewList: {
-    reviewListId: number;
-  };
+  ReviewList: undefined;
   ViewList: {
     listId: number;
     listTitle: string;

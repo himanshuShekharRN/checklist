@@ -1,5 +1,5 @@
 import {Dimensions} from 'react-native';
-import {Routes} from '../component/customTab/CustomTab.type';
+import {Routes} from '../container/customTab/CustomTab.type';
 
 export const getDeviceWidth = (): number => {
   return Dimensions.get('screen').width;

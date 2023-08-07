@@ -1,13 +1,14 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Text, FlatList, Alert, Modal, Animated} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {
   CustomIcon,
-  DepartureDocCard,
   Space,
   SwipableActionButton,
   SwipableCards,
-} from '../';
+} from '../../component';
+
 import {
   COLOR_GREEN_600,
   COLOR_GREY_600,
@@ -25,13 +26,14 @@ import {
   useChecklistCompletionStatus,
   usePreDepartureListData,
 } from '../../hooks';
-import {useDispatch} from 'react-redux';
+
 import {
   checklistSubmitted,
   checklistUnchecked,
 } from '../../store/reducer/departureChecklist';
 import {ALERT_MSG, SKIPPED} from '../../utils/constant';
 import {NationalChecklistProps} from './NationalChecklist.type';
+import {DepartureDocCard} from '../departureDocCard';
 
 export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
   const {testID} = props;

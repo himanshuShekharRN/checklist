@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useWindowDimensions} from 'react-native';
 import {TabBar, TabBarIndicator, TabView} from 'react-native-tab-view';
 
-import {CustomIcon} from '../';
+import {CustomIcon} from '../../component';
 import {COLOR_MARLOW_BLUE, COLOR_NAVY_500, COLOR_RED} from '../../utils/colors';
 import {FirstRoute} from './firstRoute';
 import {SecondRoute} from './secondRoute';

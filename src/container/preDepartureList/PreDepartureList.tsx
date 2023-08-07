@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import {useNavigation} from '@react-navigation/native';
 
-import {Card, Title, Space, CustomIcon} from '../';
+import {Card, Title, Space, CustomIcon} from '../../component';
 import {
   COLOR_BLACK,
   COLOR_GREY_600,

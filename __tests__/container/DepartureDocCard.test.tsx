@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import {DepartureDocCard} from '../../src/component';
+import {DepartureDocCard} from '../../src/container';
 
 describe('DepartureDocCard', () => {
   const listData = {
