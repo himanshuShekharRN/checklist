@@ -23,6 +23,7 @@ export const useNavigation = () => ({
     goBack: jest.fn(),
   },
 });
+
 jest.mock('@react-navigation/native', () => {
   const actualNav = jest.requireActual('@react-navigation/native');
   return {
@@ -33,4 +34,9 @@ jest.mock('@react-navigation/native', () => {
       params: {},
     }),
   };
+});
+
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+  const KeyboardAwareScrollView = ({ children }) => children;
+  return { KeyboardAwareScrollView };
 });
