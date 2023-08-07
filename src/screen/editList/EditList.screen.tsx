@@ -13,6 +13,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {addTasks} from '../../store/reducer/checklist';
 import {RootState} from '../../store';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const EditList = () => {
   const navigation = useNavigation<StackNavigationProp<{ViewList: {}}>>();
@@ -115,9 +116,9 @@ export const EditList = () => {
         <Text style={styles.checklistTitle}>{listTitle}</Text>
         <Space height={24} />
       </View>
-      <View>
+      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
         <FlatList
-          scrollEnabled
+          scrollEnabled={false}
           bounces={false}
           data={listData}
           renderItem={renderListCards}
@@ -129,7 +130,7 @@ export const EditList = () => {
           listTitle={currentList}
           onChangeTextHandler={onChangeTextHandler}
         />
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
