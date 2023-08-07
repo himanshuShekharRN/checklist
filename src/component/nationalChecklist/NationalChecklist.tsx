@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Text, FlatList, Alert, Modal, Animated} from 'react-native';
 
 import {
@@ -44,7 +44,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
   const rotationValue = useRef(new Animated.Value(0)).current;
   const [modalVisible, setModalVisible] = useState(false);
 
-  const resetRotation = () => {
+  const resetRotation = useCallback(() => {
     Animated.timing(rotationValue, {
       toValue: 0,
       duration: 0,
@@ -54,9 +54,9 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
         setModalVisible(false);
       }
     });
-  };
+  }, [rotationValue]);
 
-  const startRotationAnimation = () => {
+  const startRotationAnimation = useCallback(() => {
     Animated.timing(rotationValue, {
       toValue: 1,
       duration: 500,
@@ -67,7 +67,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
         resetRotation();
       }
     });
-  };
+  }, [resetRotation, rotationValue]);
 
   const rotate = rotationValue.interpolate({
     inputRange: [0, 1],
@@ -80,7 +80,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
       dispatch(checklistSubmitted({items}));
     };
 
-    Alert.alert(null, ALERT_MSG, [
+    Alert.alert('', ALERT_MSG, [
       {
         text: 'No',
         onPress: () => {},
@@ -93,7 +93,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     if (modalVisible) {
       startRotationAnimation();
     }
-  }, [modalVisible]);
+  }, [modalVisible, startRotationAnimation]);
 
   const handleOnSkip = items =>
     dispatch(checklistSubmitted({items, key: SKIPPED}));
