@@ -30,25 +30,31 @@ export const ReviewList: React.FC = () => {
   };
 
   const getFirstRoute = () => {
-    return <FirstRoute children1={<NationalChecklist />} />;
+    return (
+      <FirstRoute
+        testID="firstRoute"
+        children1={<NationalChecklist testID="NationalChecklist" />}
+      />
+    );
   };
 
   const getSecondRoute = () => {
-    return <SecondRoute />;
+    return <SecondRoute testID="secondRoute" />;
   };
   const getThirdRoute = () => {
-    return <ThirdRoute />;
+    return <ThirdRoute testID="thirdRoute" />;
   };
   const getFourthRoute = () => {
-    return <FourthRoute />;
+    return <FourthRoute testID="fourthRoute" />;
   };
   const getFifthRoute = () => {
-    return <FifthRoute />;
+    return <FifthRoute testID="fifthRoute" />;
   };
 
   return (
     <SafeAreaView edges={['top']} style={styles.safeAreaView}>
       <HeadersWithButton
+        testID="headerButton"
         containerStyle={styles.containerStyle}
         onPressBackIconHandler={goBack}
         iconContainerStyle={styles.iconContainerStyle}>

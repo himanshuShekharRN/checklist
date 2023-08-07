@@ -30,15 +30,15 @@ export const CustomTab: React.FC<CustomTabProps> = props => {
   const renderScene = ({route}: {route: Routes}) => {
     switch (route.key) {
       case 'first':
-        return <FirstRoute children1={firstRoute} />;
+        return <FirstRoute testID="tab" children1={firstRoute} />;
       case 'second':
-        return <SecondRoute children2={secondRoute} />;
+        return <SecondRoute testID="tab" children2={secondRoute} />;
       case 'third':
-        return <ThirdRoute children3={thirdRoute} />;
+        return <ThirdRoute testID="tab" children3={thirdRoute} />;
       case 'fourth':
-        return <FourthRoute children4={fourthRoute} />;
+        return <FourthRoute testID="tab" children4={fourthRoute} />;
       case 'fifth':
-        return <FifthRoute children5={fifthRoute} />;
+        return <FifthRoute testID="tab" children5={fifthRoute} />;
       default:
         return null;
     }
@@ -82,6 +82,7 @@ export const CustomTab: React.FC<CustomTabProps> = props => {
 
   return (
     <TabView
+      testID="customTab"
       navigationState={{index, routes}}
       renderScene={renderScene}
       onIndexChange={setIndex}

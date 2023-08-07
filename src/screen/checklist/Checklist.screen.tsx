@@ -41,7 +41,10 @@ export const Checklist = () => {
           <MyCheckList />
         </View>
       </ScrollView>
-      <FloatingAddButton onPressAddHandler={onPressAddHandler} />
+      <FloatingAddButton
+        testID="floatingBtn"
+        onPressAddHandler={onPressAddHandler}
+      />
     </SafeAreaView>
   );
 };

@@ -12,7 +12,7 @@ import {
 export const LinearProgressBar: React.FC<LinearProgressBarProps> = props => {
   const {progressStatus} = props;
   return (
-    <View style={styles.container}>
+    <View testID="linearProgressBar" style={styles.container}>
       <View style={[styles.gradientContainer, {width: `${progressStatus}%`}]}>
         <LinearGradient
           start={{x: 0, y: 0}}

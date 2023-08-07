@@ -31,8 +31,11 @@ import {
   checklistUnchecked,
 } from '../../store/reducer/departureChecklist';
 import {ALERT_MSG, SKIPPED} from '../../utils/constant';
+import {NationalChecklistProps} from './NationalChecklist.type';
 
-export const NationalChecklist: React.FC = () => {
+export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
+  const {testID} = props;
+
   const [completedChecklist] = useChecklistCompletionStatus();
   const [inCompletePreDepartureList, completedPreDepartureDataList] =
     usePreDepartureListData();
@@ -210,7 +213,7 @@ export const NationalChecklist: React.FC = () => {
   };
 
   return (
-    <>
+    <View testID={testID}>
       <FlatList
         data={inCompletePreDepartureList}
         bounces={false}
@@ -227,6 +230,6 @@ export const NationalChecklist: React.FC = () => {
           </Animated.View>
         </View>
       </Modal>
-    </>
+    </View>
   );
 };

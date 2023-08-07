@@ -6,13 +6,14 @@ import {FloatingAddButtonProps} from './FloatingAddButton.type';
 import {styles} from './FloatingAddButton.style';
 
 export const FloatingAddButton: React.FC<FloatingAddButtonProps> = props => {
-  const {containerStyle, onPressAddHandler} = props;
+  const {containerStyle, testID, onPressAddHandler} = props;
 
   return (
     <Pressable
+      testID={testID}
       onPress={onPressAddHandler}
       style={[styles.container, containerStyle]}>
-      <AddIcon />
+      <AddIcon testID="plusIcon" />
     </Pressable>
   );
 };

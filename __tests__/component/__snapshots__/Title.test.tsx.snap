@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwipableCards snapshot created successfully 1`] = `
+[
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontFamily": "Roboto-Medium",
+        "fontSize": 16,
+        "textAlign": "left",
+      }
+    }
+  >
+    Test Title
+  </Text>,
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontFamily": "Roboto-Italic",
+        "fontSize": 12,
+        "marginTop": 4,
+        "textAlign": "left",
+      }
+    }
+  >
+    Test Subtitle
+  </Text>,
+]
+`;

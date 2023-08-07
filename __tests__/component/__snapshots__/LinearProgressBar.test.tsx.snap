@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinearProgressBar snapshot created successfully 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+  testID="linearProgressBar"
+>
+  <View
+    style={
+      [
+        {
+          "height": 10,
+        },
+        {
+          "width": "80%",
+        },
+      ]
+    }
+  >
+    <BVLinearGradient
+      colors={
+        [
+          4278213285,
+          4278227386,
+          4286958015,
+        ]
+      }
+      endPoint={
+        {
+          "x": 1,
+          "y": 0,
+        }
+      }
+      locations={null}
+      startPoint={
+        {
+          "x": 0,
+          "y": 0,
+        }
+      }
+      style={
+        {
+          "borderBottomLeftRadius": 8,
+          "borderTopLeftRadius": 8,
+          "borderWidth": 1,
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "transparent",
+        "borderBottomEndRadius": 8,
+        "borderColor": "#C7CBCE",
+        "borderStyle": "dashed",
+        "borderTopEndRadius": 8,
+        "borderWidth": 1,
+        "flex": 1,
+        "height": 9,
+      }
+    }
+  />
+</View>
+`;

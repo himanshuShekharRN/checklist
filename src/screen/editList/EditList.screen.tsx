@@ -102,7 +102,7 @@ export const EditList = () => {
           onPressBackIconHandler={onPressCancelHandler}
           iconContainerStyle={styles.iconContainerStyle}>
           <View style={styles.headerTextContainer}>
-            <Pressable onPress={onPressCancelHandler}>
+            <Pressable testID="cancelBtn" onPress={onPressCancelHandler}>
               <Text style={styles.headerText}>Cancel</Text>
             </Pressable>
             <RoundedButton

@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyCheckList snapshot created successfully 1`] = `
+[
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontFamily": "Roboto-Medium",
+        "fontSize": 16,
+        "textAlign": "left",
+      }
+    }
+  >
+    My Checklists
+  </Text>,
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontFamily": "Roboto-Italic",
+        "fontSize": 12,
+        "marginTop": 4,
+        "textAlign": "left",
+      }
+    }
+  >
+    Create your own personal checklist
+  </Text>,
+  <View
+    style={
+      {
+        "backgroundColor": undefined,
+        "height": 12,
+        "width": undefined,
+      }
+    }
+  />,
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListEmptyComponent={[Function]}
+    bounces={false}
+    data={[]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEnabled={true}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "marginTop": 80,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#000000",
+              "fontFamily": "Roboto-Regular",
+              "fontSize": 12,
+              "textAlign": "left",
+            }
+          }
+        >
+          No Personal Checklist Found!
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>,
+]
+`;

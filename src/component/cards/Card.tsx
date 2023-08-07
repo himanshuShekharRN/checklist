@@ -10,7 +10,10 @@ export const Card: React.FC<CardProps> = props => {
   const ViewWrapper = isPressable ? Pressable : View;
 
   return (
-    <ViewWrapper onPress={onPressHandler} style={[styles.container, cardStyle]}>
+    <ViewWrapper
+      testID="card"
+      onPress={onPressHandler}
+      style={[styles.container, cardStyle]}>
       {children}
     </ViewWrapper>
   );

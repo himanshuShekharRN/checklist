@@ -5,12 +5,18 @@ import {CustomIcon} from '../../customIcon';
 import {HeadersWithButtonProps} from './HeadersWithButton.type';
 
 export const HeadersWithButton: React.FC<HeadersWithButtonProps> = props => {
-  const {onPressBackIconHandler, children, iconContainerStyle, containerStyle} =
-    props;
+  const {
+    onPressBackIconHandler,
+    children,
+    iconContainerStyle,
+    containerStyle,
+    testID,
+  } = props;
 
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View testID="headersWithButton" style={[styles.container, containerStyle]}>
       <Pressable
+        testID={testID}
         onPress={onPressBackIconHandler}
         style={[styles.iconContainer, iconContainerStyle]}>
         <CustomIcon name="chevron-left" size={40} isPressable={false} />

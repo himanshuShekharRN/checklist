@@ -11,7 +11,9 @@ export const Home: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={() => navigation.navigate('CheckList')}>
+      <Pressable
+        testID="homeBtn"
+        onPress={() => navigation.navigate('CheckList')}>
         <CustomIcon
           name={RIGHT_ANGLE_BRACKET}
           size={380}

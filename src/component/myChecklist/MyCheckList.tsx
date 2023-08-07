@@ -103,7 +103,6 @@ export const MyCheckList: React.FC = () => {
         bounces={false}
         data={checklistData}
         ListEmptyComponent={renderEmptyContent}
-        keyExtractor={item => item?.id}
         ItemSeparatorComponent={renderItemSeparator}
         renderItem={renderCardItems}
       />

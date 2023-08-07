@@ -26,6 +26,7 @@ export const ListCard: React.FC<ListCardProps> = props => {
       />
       {editable && (
         <TextInput
+          testID="listCardTextInput"
           autoFocus
           style={styles.textInput}
           maxLength={80}
@@ -33,7 +34,11 @@ export const ListCard: React.FC<ListCardProps> = props => {
           onChangeText={onChangeTextHandler}
         />
       )}
-      {readonly && <Text style={[styles.text, textStyle]}>{listTitle}</Text>}
+      {readonly && (
+        <Text testID="listCardText" style={[styles.text, textStyle]}>
+          {listTitle}
+        </Text>
+      )}
     </View>
   );
 };

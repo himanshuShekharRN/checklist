@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListCard snapshot created successfully 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "borderBottomColor": "#CCCDCF",
+      "borderBottomWidth": 1,
+      "borderTopColor": "#CCCDCF",
+      "borderTopWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "paddingHorizontal": 16,
+      "paddingVertical": 22,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#005AA5",
+        "borderRadius": 15,
+        "height": 30,
+        "justifyContent": "center",
+        "marginRight": 16,
+        "width": 30,
+      }
+    }
+    testID="customIcon"
+  >
+    <Text
+      allowFontScaling={false}
+      selectable={false}
+      style={
+        [
+          {
+            "color": "#FFFFFF",
+            "fontSize": 12,
+          },
+          undefined,
+          {
+            "fontFamily": "Material Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <Text
+    style={
+      [
+        {
+          "color": "#000000",
+          "flex": 1,
+          "fontFamily": "Roboto-Regular",
+          "fontSize": 16,
+        },
+        {
+          "color": "#000000",
+        },
+      ]
+    }
+    testID="listCardText"
+  >
+    Test List Title
+  </Text>
+</View>
+`;

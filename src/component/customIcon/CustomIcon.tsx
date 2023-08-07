@@ -17,7 +17,10 @@ export const CustomIcon: React.FC<IconProps> = props => {
   const ViewWrapper = isPressable ? Pressable : View;
 
   return (
-    <ViewWrapper onPress={onPressHandler} style={iconWrapperStyle}>
+    <ViewWrapper
+      testID="customIcon"
+      onPress={onPressHandler}
+      style={iconWrapperStyle}>
       <Icon name={name} size={size} color={color} />
     </ViewWrapper>
   );

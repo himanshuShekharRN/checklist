@@ -48,7 +48,7 @@ export const DepartureDocCard: React.FC<DepartureDocCardProps> = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID="departureDocCard" style={styles.container}>
       <CustomIcon
         name={getNameOfIcon(completed)}
         size={20}

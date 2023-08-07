@@ -10,6 +10,6 @@ export type PersonalCheckListItem = {
   isSkipped: boolean;
 };
 export interface DepartureDocCardProps {
-  listData: PersonalCheckListItem[];
+  listData: PersonalCheckListItem;
   disabledTextColor?: string;
 }
