@@ -34,6 +34,8 @@ import {
 import {ALERT_MSG, SKIPPED} from '../../utils/constant';
 import {NationalChecklistProps} from './NationalChecklist.type';
 import {DepartureDocCard} from '../departureDocCard';
+import { DepartureCheckListDataType } from '../../store/reducer/departureChecklist/type';
+import { PersonalCheckListItem } from '../departureDocCard/DepartureDocCard.type';
 
 export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
   const {testID} = props;
@@ -76,7 +78,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     outputRange: ['280deg', '360deg'],
   });
 
-  const handleOnSubmit = items => {
+  const handleOnSubmit = (items: DepartureCheckListDataType) => {
     const submitTheChecklist = () => {
       setModalVisible(true);
       dispatch(checklistSubmitted({items}));
@@ -97,13 +99,13 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     }
   }, [modalVisible, startRotationAnimation]);
 
-  const handleOnSkip = items =>
+  const handleOnSkip = (items: DepartureCheckListDataType) =>
     dispatch(checklistSubmitted({items, key: SKIPPED}));
-  const handleOnDone = items =>
+  const handleOnDone = (items: DepartureCheckListDataType) =>
     dispatch(checklistSubmitted({items, key: DONE}));
-  const handleOnUncheck = items => dispatch(checklistUnchecked(items));
+  const handleOnUncheck = (items: DepartureCheckListDataType) => dispatch(checklistUnchecked(items));
 
-  const getDetailsBasedOn = (_docType, _isCompleted = false) => {
+  const getDetailsBasedOn = (_docType: string, _isCompleted = false)  => {
     if (_isCompleted) {
       return [
         {
@@ -149,7 +151,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     }
   };
 
-  const renderRightActions = item => {
+  const renderRightActions = (item: PersonalCheckListItem) => {
     const {completed, documentType} = item;
     const details = getDetailsBasedOn(documentType, completed);
 
@@ -168,7 +170,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     );
   };
 
-  const renderItem = ({item}) => {
+  const renderItem = ({item}: {item:PersonalCheckListItem }) => {
     return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <DepartureDocCard listData={item} />
@@ -187,7 +189,7 @@ export const NationalChecklist: React.FC<NationalChecklistProps> = props => {
     </View>
   );
 
-  const renderCompletedItems = ({item}) => {
+  const renderCompletedItems = ({item}: {item:PersonalCheckListItem }) => {
     return (
       <SwipableCards renderRightActions={() => renderRightActions(item)}>
         <DepartureDocCard disabledTextColor={COLOR_GREY_600} listData={item} />

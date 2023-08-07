@@ -1,3 +1,4 @@
+import { PersonalCheckListItem } from '../../container/departureDocCard/DepartureDocCard.type';
 import {CheckListDataType, IndividualCheckListDataType} from '../../store/reducer/checklist/type';
 
 export type FirstButtonDetails = {
@@ -10,5 +11,5 @@ export type FirstButtonDetails = {
 export interface SwipableActionButtonProps {
   firstButtonDetails?: FirstButtonDetails;
   secondButtonDetails?: FirstButtonDetails;
-  itemDetails: IndividualCheckListDataType | CheckListDataType;
+  itemDetails: IndividualCheckListDataType | CheckListDataType | PersonalCheckListItem;
 }
